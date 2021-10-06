@@ -23,11 +23,16 @@ private:
 signals:
     void mouseOnPosition(int x, int y);
     void mouseOut();
-
+    void putShipTo(int x, int y);
+    void rotateShip();
 protected:
     void mouseMoveEvent(QMouseEvent *event) override;
     void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
+
+    // QWidget interface
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
 };
 
 #endif // BUILDERSINGLEFIELD_H

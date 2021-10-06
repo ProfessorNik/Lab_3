@@ -22,6 +22,8 @@ private slots:
     void shipSelected(int size);
     void showShip(int x, int y);
     void hideShip();
+    void putShipTo(int x, int y);
+    void rotateShip();
 signals:
 
 private:
@@ -46,6 +48,11 @@ private:
 
 
     // QWidget interface
+    void drawShipToField(const QVector<QPair<int, int> >& ship);
+    void updateLabels();
+    bool isGoodPosForShip(int x, int y);
+    bool isOutFromField(int x, int y);
+    QVector<QPair<int, int> > buildShip(int x, int y, bool &badPos);
 protected:
     void mousePressEvent(QMouseEvent *event) override;
 };

@@ -79,3 +79,12 @@ void BuilderSingleField::leaveEvent(QEvent *event)
     //qDebug() << "Live from widget";
     emit mouseOut();
 }
+
+void BuilderSingleField::mousePressEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::MouseButton::LeftButton)
+        emit putShipTo(static_cast<int>(event->position().x() / 30), static_cast<int>(event->position().y() / 30));
+    if(event->button() == Qt::MouseButton::RightButton)
+        emit rotateShip();
+}
+
