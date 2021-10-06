@@ -8,12 +8,12 @@ GraphicFieldView::GraphicFieldView(FieldModel* model, QWidget *parent) : QWidget
 
     QVBoxLayout* alliedLayout = new QVBoxLayout;
     alliedLabel = new QLabel("Your filed");
-    alliedField = new SingleField;
+    alliedField = new AlliedSingleField;
     buildLayout(alliedLayout, alliedLabel, alliedField);
 
     QVBoxLayout* enemyLayout = new QVBoxLayout;
     enemyLabel = new QLabel("Enemy filed");
-    enemyField = new SingleField;
+    enemyField = new EnemySingleField;
     buildLayout(enemyLayout, enemyLabel, enemyField);
 
     mainLayout->addSpacerItem(new QSpacerItem(1,1, QSizePolicy::Expanding, QSizePolicy::Fixed));
@@ -25,7 +25,7 @@ GraphicFieldView::GraphicFieldView(FieldModel* model, QWidget *parent) : QWidget
     this->setLayout(mainLayout);
 }
 
-void GraphicFieldView::buildLayout(QVBoxLayout* layout, QLabel* label, SingleField* field){
+void GraphicFieldView::buildLayout(QVBoxLayout* layout, QLabel* label, AbstractSingleField* field){
     label->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     field->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     layout->addSpacerItem(new QSpacerItem(1,1, QSizePolicy::Fixed, QSizePolicy::Expanding));
@@ -45,6 +45,3 @@ void GraphicFieldView::paintEvent(QPaintEvent *event){
 
 }
 
-void GraphicFieldView::drawLines(QPainter *qp){
-
-}

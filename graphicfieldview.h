@@ -8,7 +8,8 @@
 #include <QtDebug>
 #include <QSpacerItem>
 #include <QLabel>
-#include "singlefield.h"
+#include "alliedsinglefield.h"
+#include "enemysinglefield.h"
 #include "interfacefiledview.h"
 #include "observer.h"
 #include "observable.h"
@@ -23,14 +24,14 @@ public:
 private:
     FieldModel* model;
     QLabel* enemyLabel;
-    SingleField* enemyField;
+    EnemySingleField* enemyField;
     QLabel* alliedLabel;
-    SingleField* alliedField;
+    AlliedSingleField* alliedField;
 
-    void buildLayout(QVBoxLayout *layout, QLabel *label, SingleField *field);
+    void buildLayout(QVBoxLayout *layout, QLabel *label, AbstractSingleField *field);
 protected:
     void paintEvent(QPaintEvent *event);
-    void drawLines(QPainter *qp);
+
 };
 
 #endif // GRAPHICFIELDVIEW_H

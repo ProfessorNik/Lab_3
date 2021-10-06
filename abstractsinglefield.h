@@ -1,19 +1,19 @@
-#ifndef APSTRACTSINGLEFIELD_H
-#define APSTRACTSINGLEFIELD_H
+#ifndef ABSTRACTSINGLEFIELD_H
+#define ABSTRACTSINGLEFIELD_H
 
 #include <QWidget>
 #include <QPainter>
 #include "field.h"
 
-class SingleField : public QWidget
+class AbstractSingleField : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SingleField(QWidget *parent = nullptr);
+    explicit AbstractSingleField(QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
-    void drawLines(QPainter *qp);
+
 
     const int STEP = 30;
     const int X1 = 0;
@@ -27,18 +27,20 @@ protected:
     const QColor CROSS_COLOR = "#A60000";
     const QColor SHIP_OUTLINE_COLOR = "#00685A";
     const QColor SHIP_INLINE_COLOR = "#1E786C";
+    const QColor SHIP_RED_OUTLINE_COLOR = QColor(166, 0, 0, 25);
+    const QColor SHIP_RED_INLINE_COLOR = QColor(191, 48, 48, 50);
     const QColor DIAG_SQUARE_COLOR = Qt::black;
 
-    virtual void drawField(QPainter* qp)
-    {
-
-    }
-private:
-
+    virtual void drawField(QPainter* qp) = 0;
 
     void drawCross(QPainter *qp, int x, int y);
     void drawBlueSquare(QPainter *qp, int x, int y);
     void drawDiagSquare(QPainter *qp, int x, int y);
+    void drawRedSquare(QPainter *qp, int x, int y);
+
+private:
+    void drawLines(QPainter *qp);
+
 };
 
-#endif // APSTRACTSINGLEFIELD_H
+#endif // ABSTRACTSINGLEFIELD_H

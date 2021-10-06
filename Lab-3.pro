@@ -9,7 +9,11 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    apstractsinglefield.cpp \
+    abstractsinglefield.cpp \
+    alliedsinglefield.cpp \
+    builderfield.cpp \
+    buildersinglefield.cpp \
+    enemysinglefield.cpp \
     field.cpp \
     fieldmodel.cpp \
     graphicfieldview.cpp \
@@ -18,10 +22,15 @@ SOURCES += \
     main.cpp \
     mainmenu.cpp \
     observable.cpp \
-    observer.cpp
+    observer.cpp \
+    shipview.cpp
 
 HEADERS += \
-    apstractsinglefield.h \
+    abstractsinglefield.h \
+    alliedsinglefield.h \
+    builderfield.h \
+    buildersinglefield.h \
+    enemysinglefield.h \
     field.h \
     fieldmodel.h \
     graphicfieldview.h \
@@ -29,7 +38,8 @@ HEADERS += \
     interfacefiledview.h \
     mainmenu.h \
     observable.h \
-    observer.h
+    observer.h \
+    shipview.h
 
 FORMS += \
     mainmenu.ui

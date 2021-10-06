@@ -14,6 +14,7 @@ public:
         SHIP_PLACE,
         EMPTY_PLACE,
         SHIP_WRECKED_PLACE,
+        SHIP_KILLED_PLACE,
         EMPTY_WRECKED_PLACE
     } FieldPlace;
     Field() = default;
