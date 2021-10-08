@@ -9,6 +9,8 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    StatesMainWindow/statebuild.cpp \
+    StatesMainWindow/statemwm.cpp \
     abstractsinglefield.cpp \
     alliedsinglefield.cpp \
     builderfield.cpp \
@@ -21,11 +23,17 @@ SOURCES += \
     interfacefiledview.cpp \
     main.cpp \
     mainmenu.cpp \
+    mainwindow.cpp \
+    mainwindowcontroller.cpp \
+    mainwindowmodel.cpp \
     observable.cpp \
     observer.cpp \
-    shipview.cpp
+    shipview.cpp \
+    widgetcontroller.cpp
 
 HEADERS += \
+    StatesMainWindow/statebuild.h \
+    StatesMainWindow/statemwm.h \
     abstractsinglefield.h \
     alliedsinglefield.h \
     builderfield.h \
@@ -37,9 +45,13 @@ HEADERS += \
     interfacefiledmodel.h \
     interfacefiledview.h \
     mainmenu.h \
+    mainwindow.h \
+    mainwindowcontroller.h \
+    mainwindowmodel.h \
     observable.h \
     observer.h \
-    shipview.h
+    shipview.h \
+    widgetcontroller.h
 
 FORMS += \
     mainmenu.ui

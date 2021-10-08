@@ -25,7 +25,7 @@ private slots:
     void putShipTo(int x, int y);
     void rotateShip();
 signals:
-
+    void fieldIsReady(const QVector<QVector<Field::FieldPlace> >& fieldModel);
 private:
     bool verticalShipRotation = true;
     int shipChoosen = -1;
@@ -53,6 +53,7 @@ private:
     bool isGoodPosForShip(int x, int y);
     bool isOutFromField(int x, int y);
     QVector<QPair<int, int> > buildShip(int x, int y, bool &badPos);
+    void checkOnFilledField();
 protected:
     void mousePressEvent(QMouseEvent *event) override;
 };

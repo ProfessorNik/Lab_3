@@ -14,7 +14,11 @@ class MainMenu : public QMainWindow
 public:
     explicit MainMenu(QWidget *parent = nullptr);
     ~MainMenu();
-
+signals:
+    void interactiveSession();
+    void randomStrategy();
+    void optimalStrategy();
+    void statistics();
 private:
     Ui::MainMenu *ui;
 };

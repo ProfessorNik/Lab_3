@@ -44,8 +44,6 @@ BuilderField::BuilderField(QWidget *parent) : QWidget(parent)
     ship4Layout->addWidget(labelShip4);
     ship4Layout->addWidget(ship4);
 
-
-
     shipsLayout->addSpacerItem(new QSpacerItem(1,1, QSizePolicy::Fixed, QSizePolicy::Expanding));
     shipsLayout->addLayout(ship1Layout);
     shipsLayout->addLayout(ship2Layout);
@@ -141,7 +139,7 @@ bool BuilderField::isGoodPosForShip(int x, int y){
         if (fieldModel[x - 1][y - 1] == Field::FieldPlace::SHIP_PLACE)
             return false;
     }
-    else if (!isOutFromField(x + 1, y - 1)) {
+    if (!isOutFromField(x + 1, y - 1)) {
         if (fieldModel[x + 1][y - 1] == Field::FieldPlace::SHIP_PLACE)
             return false;
     }
@@ -199,6 +197,13 @@ void BuilderField::putShipTo(int x, int y)
     }
 }
 
+void BuilderField::checkOnFilledField(){
+    if (numShip1 <= 0 && numShip2 <= 0 && numShip3 <= 0 && numShip4 <= 0){
+        emit fieldIsReady(fieldModel);
+    }
+
+}
+
 void BuilderField::rotateShip()
 {
     verticalShipRotation = !verticalShipRotation;
@@ -216,6 +221,7 @@ void BuilderField::drawShipToField(const QVector<QPair<int, int> >& ship){
         fieldModel[pair.first][pair.second] = Field::FieldPlace::SHIP_PLACE;
     }
 }
+
 
 void BuilderField::mousePressEvent(QMouseEvent *event)
 {

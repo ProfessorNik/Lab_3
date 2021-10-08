@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
     MainMenu menu;
     BuilderField builder;
     builder.show();
-//    menu.show();
+    menu.show();
 //    SingleField field;
 //    field.show();
     return a.exec();
