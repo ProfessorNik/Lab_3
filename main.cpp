@@ -1,21 +1,17 @@
-#include "abstractsinglefield.h"
+//#include "mainwindow.h"
+#include "builderfiled/builderfield.h"
 #include <QApplication>
-#include "mainmenu.h"
-#include "graphicfieldview.h"
-#include "fieldmodel.h"
-#include "builderfield.h"
+#include "random_strategy/gamemodel.h"
+#include "random_strategy/widgetgameview.h"
+#include "data/session.h"
+#include "services/servicesfactory.h"
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
     QApplication a(argc, argv);
-    QVector<QVector<Field::FieldPlace> > vector;
-    FieldModel* model = new FieldModel(vector);
-    GraphicFieldView view(model);
-//    view.show();
-    MainMenu menu;
-    BuilderField builder;
-    builder.show();
-    menu.show();
-//    SingleField field;
-//    field.show();
+    Session* session = new Session();
+    session->start();
+    session->changeService(ServicesFactory::MAIN_MENU_SERVECE);
+
     return a.exec();
 }

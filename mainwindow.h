@@ -1,27 +1,20 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QHBoxLayout>
 #include <QMainWindow>
-#include <QWidget>
-#include "mainmenu.h"
-#include "mainwindowmodel.h"
-#include "observer.h"
 
-class MainWindow : public QMainWindow, public Observer
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit MainWindow(MainWindowModel* model, QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
 
-signals:
+    void setWidget(QWidget *widget);
 
 private:
-    MainWindowModel* model;
+    QHBoxLayout* mainLayout;
 
-    // Observer interface
-    void placeWidgetToWindow(QWidget *widget);
-public:
-    void update() override;
 };
 
 #endif // MAINWINDOW_H

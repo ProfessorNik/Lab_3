@@ -1,13 +1,13 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include <QMainWindow>
+#include <QWidget>
 
 namespace Ui {
 class MainMenu;
 }
 
-class MainMenu : public QMainWindow
+class MainMenu : public QWidget
 {
     Q_OBJECT
 
@@ -15,10 +15,7 @@ public:
     explicit MainMenu(QWidget *parent = nullptr);
     ~MainMenu();
 signals:
-    void interactiveSession();
     void randomStrategy();
-    void optimalStrategy();
-    void statistics();
 private:
     Ui::MainMenu *ui;
 };
