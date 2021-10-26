@@ -11,6 +11,7 @@ class GameModel : public QObject
 public:
     explicit GameModel(const AlliedField &alliedField, QObject *parent = nullptr);
 
+    void refactor(const AlliedField& alliedField);
     const AlliedField &getAlliedField() const;
     const EnemyField &getEnemyField() const;
 
@@ -19,8 +20,10 @@ public:
     void responseOnShoot(int x, int y, Field::FieldPlace place);
 
     bool isEmptyPlaceOnEnemyField(int x, int y);
+    bool isWasted();
 signals:
     void changed();
+    void wasted();
 private:
     AlliedField alliedField;
     EnemyField enemyField;

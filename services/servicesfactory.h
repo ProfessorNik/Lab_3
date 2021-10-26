@@ -12,7 +12,8 @@ public:
     typedef enum Services{
         GAME_SERVICE,
         BUILDER_SERVICE,
-        MAIN_MENU_SERVECE
+        MAIN_MENU_SERVICE,
+        LOCAL_GAME_SETTINGS_SERVICE
     } Services;
 
     static QSharedPointer<IService> buildService(Services service, Session* session);

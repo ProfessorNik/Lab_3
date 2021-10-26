@@ -17,7 +17,7 @@ private:
     MainMenu* mainMenu;
 
 private slots:
-    void randomStrategy();
+    void localGame();
 
     // IService interface
 public:

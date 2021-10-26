@@ -14,13 +14,15 @@ public:
 
     bool isAllowedCell(int x, int y);
     Field::FieldPlace shootTo(int x, int y);
-
+    bool isWasted();
 private:
     QVector<QVector<FieldPlace> > field;
 
     bool checkOnKilledShip(int x, int y);
     void changeToKilledShip(int x, int y);
     bool checkOHForOneFieldShip(int x, int y);
+signals:
+    void wasted();
 };
 
 #endif // ALLIEDFIELD_H

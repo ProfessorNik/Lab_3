@@ -7,7 +7,7 @@ MainMenu::MainMenu(QWidget *parent) :
     ui(new Ui::MainMenu)
 {
     ui->setupUi(this);
-    connect(ui->randomButton, &QPushButton::clicked, this, &MainMenu::randomStrategy);
+    connect(ui->localGameButton, &QPushButton::clicked, this, &MainMenu::localGame);
 }
 
 MainMenu::~MainMenu()

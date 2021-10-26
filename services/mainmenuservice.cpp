@@ -6,13 +6,13 @@ MainMenuService::MainMenuService(Session* session, QObject *parent) : IService(p
 {
     this->session = session;
     this->mainMenu = new MainMenu;
-    connect(mainMenu, &MainMenu::randomStrategy, this, &MainMenuService::randomStrategy);
+    connect(mainMenu, &MainMenu::localGame, this, &MainMenuService::localGame);
 }
 
-void MainMenuService::randomStrategy()
+void MainMenuService::localGame()
 {
     session->changeMode(Session::Mode::RANDOM_STRATEGY);
-    session->changeService(ServicesFactory::GAME_SERVICE);
+    session->changeService(ServicesFactory::LOCAL_GAME_SETTINGS_SERVICE);
 }
 
 

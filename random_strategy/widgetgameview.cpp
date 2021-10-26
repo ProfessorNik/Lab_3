@@ -1,19 +1,20 @@
 #include "widgetgameview.h"
 
-WidgetGameView::WidgetGameView(GameModel* model, QWidget *parent) : QWidget(parent), model(model)
+WidgetGameView::WidgetGameView(QSharedPointer<GameModel> model, QWidget *parent) : QWidget(parent), model(model)
 {
-    connect(model, &GameModel::changed, this, &WidgetGameView::update);
+    this->model = model;
+    connect(model.data(), &GameModel::changed, this, &WidgetGameView::update);
 
     this->resize(820, 410);
     QHBoxLayout* mainLayout = new QHBoxLayout;
 
     QVBoxLayout* alliedLayout = new QVBoxLayout;
-    alliedLabel = new QLabel("Your filed");
+    alliedLabel = new QLabel("Your field");
     alliedFieldWidget = new AlliedFieldWidget;
     buildLayout(alliedLayout, alliedLabel, alliedFieldWidget);
 
     QVBoxLayout* enemyLayout = new QVBoxLayout;
-    enemyLabel = new QLabel("Enemy filed");
+    enemyLabel = new QLabel("Enemy field");
     enemyFieldWidget = new EnemyFieldWidget;
     buildLayout(enemyLayout, enemyLabel, enemyFieldWidget);
 
@@ -51,7 +52,7 @@ void WidgetGameView::setEnemyName(const QString &name)
 
 WidgetGameView::~WidgetGameView()
 {
-    delete model;
+
 }
 
 void WidgetGameView::update()

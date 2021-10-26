@@ -12,13 +12,15 @@
 #include <QSpacerItem>
 #include <QLabel>
 #include <QString>
+#include <QSharedPointer>
 #include "gamemodel.h"
+
 
 class WidgetGameView : public QWidget
 {
     Q_OBJECT
 public:
-    explicit WidgetGameView(GameModel* model, QWidget *parent = nullptr);
+    explicit WidgetGameView(QSharedPointer<GameModel> model, QWidget *parent = nullptr);
 
     void setAlliedName(const QString& name);
     void setEnemyName(const QString& name);
@@ -31,7 +33,7 @@ private:
     AlliedFieldWidget* alliedFieldWidget;
     EnemyFieldWidget* enemyFieldWidget;
 
-    GameModel* model;
+    QSharedPointer<GameModel> model;
     void buildLayout(QVBoxLayout *layout, QLabel *label, AbstractFieldWidget *field);
 
 signals:

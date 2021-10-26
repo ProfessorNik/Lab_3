@@ -8,6 +8,7 @@ class EnemyField : public Field
 public:
     explicit EnemyField(QObject *parent = nullptr);
 
+    void refactor();
     const QVector<QVector<FieldPlace> > &getField() const override;
     void update(int x, int y, Field::FieldPlace cell);
 

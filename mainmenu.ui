@@ -37,9 +37,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="randomButton">
+      <widget class="QPushButton" name="localGameButton">
        <property name="text">
-        <string>RandomBot</string>
+        <string>LocalGame</string>
        </property>
       </widget>
      </item>

@@ -41,12 +41,27 @@ Field::FieldPlace AlliedField::shootTo(int x, int y)
         field[x][y] = Field::SHIP_WRECKED_PLACE;
         if(checkOnKilledShip(x, y)){
             changeToKilledShip(x, y);
+            if(isWasted())
+                emit wasted();
             return Field::FieldPlace::SHIP_KILLED_PLACE;
         }
+        if(isWasted())
+            emit wasted();
         return Field::SHIP_WRECKED_PLACE;
     }
 
     return field[x][y];
+}
+
+bool AlliedField::isWasted()
+{
+    for(int x = 0; x < Field::X_MAX; x++){
+        for(int y = 0; y < Field::Y_MAX; y++){
+            if (field[x][y] == Field::SHIP_PLACE)
+                return false;
+        }
+    }
+    return true;
 }
 
 bool AlliedField::checkOnKilledShip(int x, int y)

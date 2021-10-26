@@ -3,9 +3,10 @@
 #include "../field/field.h"
 #include <QMap>
 
-ComputerGamer::ComputerGamer(QObject *parent) : IGamer(parent)
+ComputerGamer::ComputerGamer(QSharedPointer<IUser> user, QSharedPointer<BuilderFieldStrategy> builder, QObject *parent) : IGamer(parent),  user(user), builder(builder)
 {
-    model = new GameModel(AlliedField(randomBuildField()), this);
+    connect(builder.data(), &BuilderFieldStrategy::isBuilded, this, &ComputerGamer::rebuildGamer);
+    rebuilded = false;
 }
 
 
@@ -122,4 +123,51 @@ void ComputerGamer::changeStep(bool step)
 void ComputerGamer::updateEnemyField(int x, int y, Field::FieldPlace place)
 {
     model->responseOnShoot(x, y, place);
+}
+
+
+const AlliedField& ComputerGamer::getField()
+{
+    return model->getAlliedField();
+}
+
+void ComputerGamer::startGame()
+{
+    rebuilded = false;
+}
+
+bool ComputerGamer::isRenewed()
+{
+    return rebuilded;
+}
+
+void ComputerGamer::endGame()
+{
+
+}
+
+
+void ComputerGamer::rebuild()
+{
+    builder->build();
+}
+
+void ComputerGamer::rebuildGamer(AlliedField field)
+{
+    if(model.isNull()){
+        model = QSharedPointer<GameModel>(new GameModel(field));
+        connect(model.data(), &GameModel::wasted, this, &ComputerGamer::wasted);
+    }
+    else{
+        model->refactor(field);
+    }
+    rebuilded = true;
+    emit fieldRebuilded();
+}
+
+
+
+bool ComputerGamer::isWasted()
+{
+    return model->isWasted();
 }

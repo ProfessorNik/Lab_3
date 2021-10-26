@@ -4,6 +4,7 @@
 #include "iservice.h"
 #include "../random_strategy/controllers/localgamecontorller.h"
 #include "gamestates/gamestate.h"
+#include "../gamewidget.h"
 
 
 class Session;
@@ -17,9 +18,11 @@ public:
     void changeState(GameState* state);
 private:
 
-    LocalGameContorller* gc;
+    QSharedPointer<LocalGameContorller> gc;
+    QSharedPointer<GameWidget> view;
     GameState *state;
     Session *session;
+
 
     // IService interface
 public:

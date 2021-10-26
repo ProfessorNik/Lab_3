@@ -11,6 +11,8 @@ public:
     IGameController(QObject* parent = nullptr);
 
     virtual void startGame() = 0;
+signals:
+    void endGame();
 };
 
 #endif // IGAMECONTROLLER_H

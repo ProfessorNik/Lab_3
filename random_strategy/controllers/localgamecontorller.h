@@ -5,24 +5,34 @@
 #include "../../gamers/humangamer.h"
 #include "../../gamers/randomgamer.h"
 #include "../../gamers/igamer.h"
+#include "../../data/localgamedata.h"
+
 
 class BuilderService;
 
 class LocalGameContorller : public IGameController
 {
 public:
-    explicit LocalGameContorller(Session* session, QObject *parent = nullptr);
+    explicit LocalGameContorller(QSharedPointer<LocalGameData> gd, QObject *parent = nullptr);
 
-    HumanGamer* gamer1;
-    IGamer* gamer2;
-    Session* session;
+    QSharedPointer<LocalGameData> gd;
+    QSharedPointer<IGamer> gamer1;
+    QSharedPointer<IGamer> gamer2;
 
+    bool isEndBattle;
     bool gamer1Step;
     // IGameController interface
 public:
     void startGame() override;
+
 private slots:
     void tryStep(int x, int y);
+    void prepareBattle();
+    void endBattle();
+
+private:
+    bool isBuilded();
+    void startBattle();
 };
 
 #endif // LOCALGAMECONTORLLER_H

@@ -24,6 +24,16 @@ void Session::defaultSettings()
     online = false;
 }
 
+QSharedPointer<LocalGameData> Session::getLocalGameData() const
+{
+    return localgd;
+}
+
+void Session::setLocalGameData(QSharedPointer<LocalGameData> newLocalgd)
+{
+    localgd = newLocalgd;
+}
+
 Session::Mode Session::getMode() const
 {
     return mode;
@@ -49,15 +59,15 @@ bool Session::isEmptyField()
     return user->isEmptyField();
 }
 
-const AlliedField &Session::getField()
-{
-    return  user->getField();
-}
+//const AlliedField &Session::getField()
+//{
+//    return  user->getField();
+//}
 
-void Session::setField(const AlliedField &newField)
-{
-    user->setField(newField);
-}
+//void Session::setField(const AlliedField &newField)
+//{
+//    user->setField(newField);
+//}
 
 void Session::changeService(ServicesFactory::Services service)
 {

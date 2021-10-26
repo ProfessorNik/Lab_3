@@ -1,7 +1,7 @@
 #include "randomgamer.h"
 #include <QRandomGenerator>
 
-RandomGamer::RandomGamer(QObject *parent) : ComputerGamer(parent)
+RandomGamer::RandomGamer(QSharedPointer<IUser> user, QSharedPointer<BuilderFieldStrategy> builder, QObject *parent) : ComputerGamer(user, builder, parent)
 {
 
 }
@@ -18,3 +18,10 @@ void RandomGamer::makeStep(int &x, int &y)
             break;
     }
 }
+
+
+FactoryGamers::Gamers RandomGamer::getGamerVariation()
+{
+    return FactoryGamers::Gamers::RANDOM_GAMER;
+}
+

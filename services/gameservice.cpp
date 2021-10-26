@@ -3,7 +3,8 @@
 GameService::GameService(Session *session, QObject *parent) : IService(parent)
 {
     this->session = session;
-    gc = new LocalGameContorller(session, this);
+    this->view = QSharedPointer<GameWidget>(new GameWidget(session->getLocalGameData()));
+    gc = QSharedPointer<LocalGameContorller>(new LocalGameContorller(session->getLocalGameData(), this));
 }
 
 void GameService::changeState(GameState *state)
@@ -17,9 +18,6 @@ void GameService::changeState(GameState *state)
 
 void GameService::make()
 {
-    if(session->isEmptyField()){
-        session->changeService(ServicesFactory::BUILDER_SERVICE);
-        return;
-    }
+    session->showWidget(view.data());
     gc->startGame();
 }

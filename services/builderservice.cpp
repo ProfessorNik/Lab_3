@@ -9,8 +9,8 @@ BuilderService::BuilderService(Session *session, QObject *parent) : IService(par
 
 void BuilderService::startGame(const QVector<QVector<Field::FieldPlace> > &field)
 {
-    session->setField(AlliedField(field));
-    session->changeService(ServicesFactory::GAME_SERVICE);
+//    session->setField(AlliedField(field));
+//    session->changeService(ServicesFactory::GAME_SERVICE);
 }
 
 

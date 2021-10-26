@@ -3,33 +3,49 @@
 
 #include "igamer.h"
 #include "../data/session.h"
+#include "../data/iuser.h"
 #include "../random_strategy/widgetgameview.h"
 #include "../random_strategy/gamemodel.h"
+#include <QSharedPointer>
+#include "factorygamers.h"
+#include "irebuildgamer.h"
+#include "../builderfiled/builderfieldstrategy.h"
+#include "../builderfiled/builderfieldself.h"
 
-class HumanGamer : public IGamer
+class HumanGamer : public IGamer, public IRebuildGamer
 {
     Q_OBJECT
 public:
-    explicit HumanGamer(Session *session, QObject *parent = nullptr);
+    explicit HumanGamer(QSharedPointer<IUser> user, QSharedPointer<BuilderFieldStrategy> builder, QObject *parent = nullptr);
 
     bool isAllowedSell(int x, int y) override;
     Field::FieldPlace shootTo(int x, int y) override;
     void changeStep(bool step) override;
     void updateEnemyField(int x, int y, Field::FieldPlace place) override;
+    const AlliedField & getField() override;
 
-    GameModel* getGameModel();
+
+    void startGame() override;
+    void rebuild() override;
+    bool isRenewed() override;
+    bool isWasted() override;
+    void endGame() override;
+
+    FactoryGamers::Gamers getGamerVariation() override;
 
     ~HumanGamer();
+private slots:
+    void rebuildGamer(AlliedField field) override;
 private:
-    Session* session;
-    GameModel* model;
-    WidgetGameView* view;
+    QSharedPointer<BuilderFieldStrategy> builder;
+    QSharedPointer<GameModel> model;
+    QSharedPointer<WidgetGameView> view;
+    QSharedPointer<IUser> user;
 
     bool step;
+    bool rebilded;
 private slots:
     void tryShoot(int x, int y);
-
-
 };
 
 

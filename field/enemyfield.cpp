@@ -5,6 +5,11 @@ EnemyField::EnemyField(QObject *parent) : Field(parent)
     defultBuildFiled();
 }
 
+void EnemyField::refactor()
+{
+    defultBuildFiled();
+}
+
 const QVector<QVector<Field::FieldPlace> > &EnemyField::getField() const
 {
     return field;
@@ -51,7 +56,10 @@ void EnemyField::changeToKilledShip(int x, int y)
 //                field[x + i][y + j] = Field::FieldPlace::SHIP_KILLED_PLACE;
 //                pasteEmptyPlaces(x+i, y+i);
                 for (int k = 0; k < Field::SHIP_MAX_SIZE; k++){
-                    if(field[x + i*k][y + j*k] == Field::FieldPlace::SHIP_WRECKED_PLACE){
+                    if (x + i*k < 0 || x + i*k >= Field::X_MAX || y + j*k < 0 || y + j*k >= Field::Y_MAX){
+                        break;
+                    }
+                    else if(field[x + i*k][y + j*k] == Field::FieldPlace::SHIP_WRECKED_PLACE){
                         field[x + i*k][y + j*k] = Field::FieldPlace::SHIP_KILLED_PLACE;
                         pasteEmptyPlaces(x + i*k, y + j*k);
                     }else{

@@ -2,7 +2,13 @@
 
 GameModel::GameModel(const AlliedField &alliedField, QObject *parent) : QObject(parent), alliedField(alliedField)
 {
+    connect(&this->alliedField, &AlliedField::wasted, this, &GameModel::wasted);
+}
 
+void GameModel::refactor(const AlliedField &alliedField)
+{
+    this->alliedField = alliedField;
+    this->enemyField.refactor();
 }
 
 const AlliedField &GameModel::getAlliedField() const
@@ -36,4 +42,11 @@ bool GameModel::isEmptyPlaceOnEnemyField(int x, int y)
 {
     return enemyField.getField()[x][y] == Field::FieldPlace::EMPTY_PLACE;
 }
+
+bool GameModel::isWasted()
+{
+    return alliedField.isWasted();
+}
+
+
 

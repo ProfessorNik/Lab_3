@@ -15,7 +15,7 @@ public:
     explicit MainMenu(QWidget *parent = nullptr);
     ~MainMenu();
 signals:
-    void randomStrategy();
+    void localGame();
 private:
     Ui::MainMenu *ui;
 };

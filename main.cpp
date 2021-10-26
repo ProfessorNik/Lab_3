@@ -5,13 +5,15 @@
 #include "random_strategy/widgetgameview.h"
 #include "data/session.h"
 #include "services/servicesfactory.h"
+#include "localgamesettingswidget.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Session* session = new Session();
     session->start();
-    session->changeService(ServicesFactory::MAIN_MENU_SERVECE);
+    session->changeService(ServicesFactory::MAIN_MENU_SERVICE);
+
 
     return a.exec();
 }
