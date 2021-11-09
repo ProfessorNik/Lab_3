@@ -38,8 +38,13 @@ private:
 
 signals:
      void shootToSell(int x, int y);
+     void closed();
 public slots:
     void update();
+
+    // QWidget interface
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // WIDGETGAMEVIEW_H

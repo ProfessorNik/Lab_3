@@ -17,6 +17,10 @@ private:
     QSharedPointer<BuilderField> builder;
 private slots:
     void sendField(QVector<QVector<Field::FieldPlace> > field);
+
+    // BuilderFieldStrategy interface
+public:
+    void forcedClosing() override;
 };
 
 #endif // BUILDERFIELDSELF_H

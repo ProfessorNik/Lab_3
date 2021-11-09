@@ -15,6 +15,10 @@ private:
     static QVector<QVector<Field::FieldPlace> > randomBuildField();
     static bool checkNeighborhood(const QVector<QVector<Field::FieldPlace> >& field, int x, int y);
     static void defultBuildField(QVector<QVector<Field::FieldPlace> >& field);
+
+    // BuilderFieldStrategy interface
+public:
+    void forcedClosing() override;
 };
 
 #endif // BUILDERFIELDRANDOM_H

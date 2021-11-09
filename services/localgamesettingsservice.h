@@ -15,6 +15,7 @@ public:
     void make() override;
 private slots:
     void gameSettingsReady();
+    void pressedMenu();
 private:
     Session *session;
     QSharedPointer<LocalGameSettingsWidget> widget;

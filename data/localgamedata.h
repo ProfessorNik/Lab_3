@@ -27,8 +27,13 @@ public:
 
     void startGame();
 
+    bool isNextBattle();
+
     QSharedPointer<IGamer> getGamer1() const;
     QSharedPointer<IGamer> getGamer2() const;
+
+    void endGame();
+    void forcedClosing();
 
     void gamer1Win();
     void gamer2Win();
@@ -42,6 +47,7 @@ private:
     int numGame;
     int scoreG1;
     int scoreG2;
+    bool next;
     GamerStatus statusG1;
     GamerStatus statusG2;
 
@@ -55,7 +61,6 @@ public:
     int getScoreG2() override;
     GamerStatus getStatusG1() override;
     GamerStatus getStatusG2() override;
-    bool checkOnEndGame();
 };
 
 #endif // LOCALGAMEDATA_H

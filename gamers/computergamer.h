@@ -18,22 +18,25 @@ public:
     void updateEnemyField(int x, int y, Field::FieldPlace place) override;
 
     const AlliedField &getField() override;
-    void startGame() override;
+    void startBattle() override;
     bool isRenewed() override;
-    void endGame() override;
+    void endBattle() override;
     virtual FactoryGamers::Gamers getGamerVariation() override = 0;
     void rebuild() override;
 
     static void defultBuildField(QVector<QVector<Field::FieldPlace> > &field);
     static QVector<QVector<Field::FieldPlace> > randomBuildField();
 protected:
+
     QSharedPointer<GameModel> model;
     virtual void makeStep(int &x, int &y) = 0;
+    virtual void rebuildCoords();
 private:
     static bool checkNeighborhood(const QVector<QVector<Field::FieldPlace> >&field, int x, int y);
 
     QSharedPointer<IUser> user;
     QSharedPointer<BuilderFieldStrategy> builder;
+    Field::FieldPlace lastShoot;
 
     bool rebuilded;
 
@@ -44,6 +47,11 @@ private slots:
     // IGamer interface
 public:
     bool isWasted() override;
+
+    // IGamer interface
+protected:
+    void forcedClosing() override;
+    Field::FieldPlace getLastShoot() const;
 };
 
 #endif // COMPUTERGAMER_H

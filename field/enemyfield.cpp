@@ -7,6 +7,7 @@ EnemyField::EnemyField(QObject *parent) : Field(parent)
 
 void EnemyField::refactor()
 {
+    field.clear();
     defultBuildFiled();
 }
 

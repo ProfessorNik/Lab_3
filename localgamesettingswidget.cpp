@@ -9,6 +9,7 @@ LocalGameSettingsWidget::LocalGameSettingsWidget(QWidget *parent) :
     ui->amountGame->setMinimum(1);
     ui->amountGame->setValue(1);
     connect(ui->startButton, &QPushButton::pressed, this, &LocalGameSettingsWidget::pressedStrart);
+    connect(ui->menuButton, &QPushButton::pressed, this, &LocalGameSettingsWidget::mainMenu);
 }
 
 LocalGameSettingsWidget::~LocalGameSettingsWidget()

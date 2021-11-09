@@ -3,6 +3,7 @@
 
 #include "abstractfieldwidget.h"
 #include <QMouseEvent>
+#include <QTimer>
 
 class EnemyFieldWidget : public AbstractFieldWidget
 {
@@ -15,11 +16,15 @@ protected:
     void drawField(QPainter *qp) override;
 private:
     QVector<QVector<Field::FieldPlace> > field;
+    QSharedPointer<QTimer> timer;
+    bool step;
 signals:
     void pressToSell(int x, int y);
     // QWidget interface
 protected:
     void mousePressEvent(QMouseEvent *event) override;
+private slots:
+    void changeStep();
 };
 
 #endif // ENEMYFIELDWIDGET_H

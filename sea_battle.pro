@@ -33,6 +33,7 @@ SOURCES += \
     gamers/igamegamer.cpp \
     gamers/igamer.cpp \
     gamers/irebuildgamer.cpp \
+    gamers/optimalgamer.cpp \
     gamers/randomgamer.cpp \
     gamewidget.cpp \
     igamedatamodel.cpp \
@@ -79,6 +80,7 @@ HEADERS += \
     gamers/igamegamer.h \
     gamers/igamer.h \
     gamers/irebuildgamer.h \
+    gamers/optimalgamer.h \
     gamers/randomgamer.h \
     gamewidget.h \
     igamedatamodel.h \

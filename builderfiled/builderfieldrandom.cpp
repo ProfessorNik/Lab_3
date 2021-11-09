@@ -1,6 +1,9 @@
 #include "builderfieldrandom.h"
 #include <QRandomGenerator>
 #include <QMap>
+#include <random>
+#include <ctime>
+#include <QDebug>
 
 BuilderFieldRandom::BuilderFieldRandom(QObject *parent) : BuilderFieldStrategy(parent)
 {
@@ -11,19 +14,24 @@ BuilderFieldRandom::BuilderFieldRandom(QObject *parent) : BuilderFieldStrategy(p
 void BuilderFieldRandom::build()
 {
    auto field = randomBuildField();
+   for (auto line : field){
+       qDebug() << line;
+   }
    emit isBuilded(AlliedField(field));
 }
 
 QVector<QVector<Field::FieldPlace> > BuilderFieldRandom::randomBuildField()
 {
+    qDebug() << "random builder started";
     QVector<QVector<Field::FieldPlace> > field;
     defultBuildField(field);
-    QRandomGenerator genetator;
+    qDebug() << "default builder ended";
+    //QRandomGenerator genetator;
     QVector<int> numsShips;
-    numsShips << 4
-              << 3
+    numsShips << 1
               << 2
-              << 1;
+              << 3
+              << 4;
     QMap<int, int> numsDeckShips;
     numsDeckShips[4] = 1;
     numsDeckShips[3] = 2;
@@ -32,10 +40,11 @@ QVector<QVector<Field::FieldPlace> > BuilderFieldRandom::randomBuildField()
     for(auto numShips : numsShips){
         for(int i = 0; i < numShips; i++){
             while(true){
-//                qDebug("try to set ship");
-                int x = genetator.bounded(0, Field::X_MAX);
-                int y = genetator.bounded(0, Field::X_MAX);
-                bool vertical = genetator.bounded(0, 1);
+                qDebug("try to set ship");
+                int x = rand() % 10;
+                int y = rand() % 10;
+                bool vertical = rand() % 2;
+                qDebug() << x << y << vertical;
                 if(!vertical){
                     bool canPlace = true;
                     for(int j = 0; j < numsDeckShips[numShips]; j++){
@@ -71,7 +80,7 @@ QVector<QVector<Field::FieldPlace> > BuilderFieldRandom::randomBuildField()
             }
         }
     }
-
+    qDebug() << "random bulder finished";
     return field;
 }
 
@@ -94,6 +103,7 @@ bool BuilderFieldRandom::checkNeighborhood(const QVector<QVector<Field::FieldPla
 
 void BuilderFieldRandom::defultBuildField(QVector<QVector<Field::FieldPlace> >& field)
 {
+    field.clear();
     for(int x = 0; x < Field::X_MAX; x++){
         QVector<Field::FieldPlace> line;
         for(int y = 0; y < Field::Y_MAX; y++){
@@ -103,3 +113,8 @@ void BuilderFieldRandom::defultBuildField(QVector<QVector<Field::FieldPlace> >& 
     }
 }
 
+
+
+void BuilderFieldRandom::forcedClosing()
+{
+}

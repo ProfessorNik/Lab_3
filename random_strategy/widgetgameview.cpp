@@ -63,3 +63,9 @@ void WidgetGameView::update()
 
 
 
+
+
+void WidgetGameView::closeEvent(QCloseEvent *event)
+{
+    emit closed();
+}

@@ -1,10 +1,13 @@
 #include "gameservice.h"
+#include "../data/localgamedata.h"
 
 GameService::GameService(Session *session, QObject *parent) : IService(parent)
 {
     this->session = session;
     this->view = QSharedPointer<GameWidget>(new GameWidget(session->getLocalGameData()));
     gc = QSharedPointer<LocalGameContorller>(new LocalGameContorller(session->getLocalGameData(), this));
+//    connect(view.data(), &GameWidget::exit, gc.data(), &LocalGameContorller::exitGame);
+    connect(view.data(), &GameWidget::exit, this, &GameService::exit);
 }
 
 void GameService::changeState(GameState *state)
@@ -13,6 +16,17 @@ void GameService::changeState(GameState *state)
         delete this->state;
     this->state = state;
     this->state->setContext(this);
+}
+
+void GameService::goToMainMenu()
+{
+
+}
+
+void GameService::exit()
+{
+    gc->forcedClosing();
+    session->changeService(ServicesFactory::MAIN_MENU_SERVICE);
 }
 
 

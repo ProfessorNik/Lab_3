@@ -9,6 +9,7 @@
 
 int main(int argc, char *argv[])
 {
+    std::srand(time(0));
     QApplication a(argc, argv);
     Session* session = new Session();
     session->start();

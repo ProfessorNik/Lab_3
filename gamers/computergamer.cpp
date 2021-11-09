@@ -5,7 +5,8 @@
 
 ComputerGamer::ComputerGamer(QSharedPointer<IUser> user, QSharedPointer<BuilderFieldStrategy> builder, QObject *parent) : IGamer(parent),  user(user), builder(builder)
 {
-    connect(builder.data(), &BuilderFieldStrategy::isBuilded, this, &ComputerGamer::rebuildGamer);
+    connect(builder.data(), &BuilderFieldStrategy::isBuilded, this, &ComputerGamer::rebuildGamer, Qt::QueuedConnection);
+    connect(builder.data(), &BuilderFieldStrategy::closed, this, &ComputerGamer::closed, Qt::QueuedConnection);
     rebuilded = false;
 }
 
@@ -38,7 +39,6 @@ QVector<QVector<Field::FieldPlace> > ComputerGamer::randomBuildField()
     for(auto numShips : numsShips){
         for(int i = 0; i < numShips; i++){
             while(true){
-//                qDebug("try to set ship");
                 int x = genetator.bounded(0, Field::X_MAX);
                 int y = genetator.bounded(0, Field::X_MAX);
                 bool vertical = genetator.bounded(0, 1);
@@ -81,6 +81,11 @@ QVector<QVector<Field::FieldPlace> > ComputerGamer::randomBuildField()
     return field;
 }
 
+void ComputerGamer::rebuildCoords()
+{
+
+}
+
 bool ComputerGamer::checkNeighborhood(const QVector<QVector<Field::FieldPlace> >& field,int x, int y)
 {
     for(int i = -1; i <= 1; i++){
@@ -96,6 +101,11 @@ bool ComputerGamer::checkNeighborhood(const QVector<QVector<Field::FieldPlace> >
         }
     }
     return true;
+}
+
+Field::FieldPlace ComputerGamer::getLastShoot() const
+{
+    return lastShoot;
 }
 
 void ComputerGamer::defultBuildField(QVector<QVector<Field::FieldPlace> >& field)
@@ -122,6 +132,7 @@ void ComputerGamer::changeStep(bool step)
 
 void ComputerGamer::updateEnemyField(int x, int y, Field::FieldPlace place)
 {
+    lastShoot = place;
     model->responseOnShoot(x, y, place);
 }
 
@@ -131,7 +142,7 @@ const AlliedField& ComputerGamer::getField()
     return model->getAlliedField();
 }
 
-void ComputerGamer::startGame()
+void ComputerGamer::startBattle()
 {
     rebuilded = false;
 }
@@ -141,7 +152,7 @@ bool ComputerGamer::isRenewed()
     return rebuilded;
 }
 
-void ComputerGamer::endGame()
+void ComputerGamer::endBattle()
 {
 
 }
@@ -149,6 +160,8 @@ void ComputerGamer::endGame()
 
 void ComputerGamer::rebuild()
 {
+    lastShoot = Field::FieldPlace::EMPTY_PLACE;
+    rebuildCoords();
     builder->build();
 }
 
@@ -170,4 +183,10 @@ void ComputerGamer::rebuildGamer(AlliedField field)
 bool ComputerGamer::isWasted()
 {
     return model->isWasted();
+}
+
+
+void ComputerGamer::forcedClosing()
+{
+    builder->forcedClosing();
 }

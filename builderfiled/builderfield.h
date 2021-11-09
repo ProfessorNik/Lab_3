@@ -13,6 +13,7 @@ class BuilderField : public QWidget
 public:
     explicit BuilderField(QWidget *parent = nullptr);
 
+    void refactor();
     struct Ship{
         int size;
         QVector<QPair<int, int>> shipCoordinates;
@@ -26,6 +27,7 @@ private slots:
     void rotateShip();
 signals:
     void fieldIsReady(const QVector<QVector<Field::FieldPlace> >& fieldModel);
+    void closed();
 private:
     bool verticalShipRotation = true;
     int shipChoosen = -1;
@@ -57,6 +59,10 @@ private:
 protected:
     void mousePressEvent(QMouseEvent *event) override;
 
+
+    // QWidget interface
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // BUILDERFIELD_H

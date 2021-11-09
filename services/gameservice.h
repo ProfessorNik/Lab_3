@@ -23,8 +23,10 @@ private:
     GameState *state;
     Session *session;
 
-
+    void goToMainMenu();
     // IService interface
+private slots:
+    void exit();
 public:
     void make() override;
 };

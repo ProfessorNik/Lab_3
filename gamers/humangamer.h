@@ -25,11 +25,11 @@ public:
     const AlliedField & getField() override;
 
 
-    void startGame() override;
+    void startBattle() override;
     void rebuild() override;
     bool isRenewed() override;
     bool isWasted() override;
-    void endGame() override;
+    void endBattle() override;
 
     FactoryGamers::Gamers getGamerVariation() override;
 
@@ -46,6 +46,10 @@ private:
     bool rebilded;
 private slots:
     void tryShoot(int x, int y);
+
+    // IGamer interface
+public:
+    void forcedClosing() override;
 };
 
 

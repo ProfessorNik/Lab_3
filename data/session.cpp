@@ -71,7 +71,6 @@ bool Session::isEmptyField()
 
 void Session::changeService(ServicesFactory::Services service)
 {
-    this->lastService = this->service;
     this->service = ServicesFactory::buildService(service, this);
     this->service->make();
 }

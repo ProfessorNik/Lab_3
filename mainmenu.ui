@@ -30,23 +30,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="interactiveButton">
-       <property name="text">
-        <string>Interactive</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="localGameButton">
        <property name="text">
         <string>LocalGame</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="optimalButton">
-       <property name="text">
-        <string>OptimalBot</string>
        </property>
       </widget>
      </item>

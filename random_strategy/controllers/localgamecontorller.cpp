@@ -6,20 +6,77 @@ LocalGameContorller::LocalGameContorller(QSharedPointer<LocalGameData> gd, QObje
 {
     gamer1 = gd->getGamer1();
     gamer2 = gd->getGamer2();
-    connect(gd.data(), &LocalGameData::nextGame, this, &LocalGameContorller::prepareBattle);
-    connect(gd.data(), &LocalGameData::gameEnd, this, &LocalGameContorller::endGame);
 
-    connect(gamer1.data(), &IGamer::shoot, this, &LocalGameContorller::tryStep);
-    connect(gamer2.data(), &IGamer::shoot, this, &LocalGameContorller::tryStep);
-    connect(gamer1.data(), &IGamer::fieldRebuilded, this, &LocalGameContorller::startBattle);
-    connect(gamer1.data(), &IGamer::fieldRebuilded, this, &LocalGameContorller::startBattle);
+    connect(gamer1.data(), &IGamer::shoot, this, &LocalGameContorller::tryStep, Qt::QueuedConnection);
+    connect(gamer2.data(), &IGamer::shoot, this, &LocalGameContorller::tryStep, Qt::QueuedConnection);
+//    connect(gamer1.data(), &IGamer::closed, this, &LocalGameContorller::forcedClosing);
+//    connect(gamer2.data(), &IGamer::closed, this, &LocalGameContorller::forcedClosing);
+    connect(gamer1.data(), &IGamer::fieldRebuilded, this, &LocalGameContorller::startBattle, Qt::QueuedConnection);
+    connect(gamer2.data(), &IGamer::fieldRebuilded, this, &LocalGameContorller::startBattle, Qt::QueuedConnection);
 }
 
 void LocalGameContorller::startGame()
 {
     gd->startGame();
+    nextBattle();
     isEndBattle = true;
 }
+
+void LocalGameContorller::forcedClosing()
+{
+    gamer1->forcedClosing();
+    gamer2->forcedClosing();
+    gd->forcedClosing();
+}
+
+
+void LocalGameContorller::nextBattle()
+{
+    if(gd->isNextBattle())
+        prepareBattle();
+    else
+        endGame();
+}
+
+void LocalGameContorller::prepareBattle()
+{
+    qDebug() << "prepare Battle";
+    gamer1->rebuild();
+    gamer2->rebuild();
+}
+
+void LocalGameContorller::startBattle()
+{
+    qDebug() << "start battle";
+    if(!isBuilded())
+        return;
+    gamer1->startBattle();
+    gamer2->startBattle();
+    isEndBattle = false;
+    gamer1Step = true;
+    gamer1->changeStep(gamer1Step);
+    gamer2->changeStep(!gamer1Step);
+}
+
+void LocalGameContorller::endBattle()
+{
+    qDebug("endBattle");
+    gamer1->endBattle();
+    gamer2->endBattle();
+    //////
+    if(gamer1Step)
+        gd->gamer1Win();
+    else
+        gd->gamer2Win();
+    //////
+    nextBattle();
+}
+
+void LocalGameContorller::endGame()
+{
+    gd->endGame();
+}
+
 
 bool LocalGameContorller::isBuilded()
 {
@@ -27,19 +84,6 @@ bool LocalGameContorller::isBuilded()
         return true;
     return false;
 }
-
-void LocalGameContorller::startBattle()
-{
-    if(!isBuilded())
-        return;
-    gamer1->startGame();
-    gamer2->startGame();
-    isEndBattle = false;
-    gamer1Step = true;
-    gamer1->changeStep(gamer1Step);
-    gamer2->changeStep(!gamer1Step);
-}
-
 
 
 void LocalGameContorller::tryStep(int x, int y)
@@ -77,24 +121,5 @@ void LocalGameContorller::tryStep(int x, int y)
 
     gamer1->changeStep(gamer1Step);
     gamer2->changeStep(!gamer1Step);
-}
-
-void LocalGameContorller::prepareBattle()
-{
-    gamer1->rebuild();
-    gamer2->rebuild();
-}
-
-void LocalGameContorller::endBattle()
-{
-    qDebug("endBattle");
-    gamer1->endGame();
-    gamer2->endGame();
-    //////
-    if(gamer1Step)
-        gd->gamer1Win();
-    else
-        gd->gamer2Win();
-    //////
 }
 

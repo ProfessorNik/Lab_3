@@ -24,15 +24,18 @@ public:
     // IGameController interface
 public:
     void startGame() override;
+public slots:
+    void forcedClosing();
 
 private slots:
     void tryStep(int x, int y);
     void prepareBattle();
     void endBattle();
-
+    void endGame();
 private:
     bool isBuilded();
     void startBattle();
+    void nextBattle();
 };
 
 #endif // LOCALGAMECONTORLLER_H

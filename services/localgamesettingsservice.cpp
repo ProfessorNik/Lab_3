@@ -5,6 +5,7 @@ LocalGameSettingsService::LocalGameSettingsService(Session *session, QObject *pa
 {
     widget = QSharedPointer<LocalGameSettingsWidget>(new LocalGameSettingsWidget);
     connect(widget.data(), &LocalGameSettingsWidget::settingsReady, this, &LocalGameSettingsService::gameSettingsReady);
+    connect(widget.data(), &LocalGameSettingsWidget::mainMenu, this, &LocalGameSettingsService::pressedMenu);
 }
 
 
@@ -28,4 +29,9 @@ void LocalGameSettingsService::gameSettingsReady()
                                                                            amountGame));
     session->setLocalGameData(data);
     session->changeService(ServicesFactory::GAME_SERVICE);
+}
+
+void LocalGameSettingsService::pressedMenu()
+{
+    session->changeService(ServicesFactory::MAIN_MENU_SERVICE);
 }

@@ -8,6 +8,9 @@ EnemyFieldWidget::EnemyFieldWidget(QWidget *parent) : AbstractFieldWidget(parent
             line.push_back(Field::FieldPlace::EMPTY_PLACE);
         field.push_back(line);
     }
+    timer = QSharedPointer<QTimer>(new QTimer);
+    timer->start(10);
+    connect(timer.data(), &QTimer::timeout, this, &EnemyFieldWidget::changeStep);
 }
 
 void EnemyFieldWidget::update(const QVector<QVector<Field::FieldPlace> > &field)
@@ -43,5 +46,13 @@ void EnemyFieldWidget::drawField(QPainter *qp)
 
 void EnemyFieldWidget::mousePressEvent(QMouseEvent *event)
 {
-    emit pressToSell(static_cast<int>(event->position().x() / 30), static_cast<int>(event->position().y() / 30));
+    if(step){
+        step = false;
+        emit pressToSell(static_cast<int>(event->position().x() / 30), static_cast<int>(event->position().y() / 30));
+    }
+}
+
+void EnemyFieldWidget::changeStep()
+{
+    step = true;
 }

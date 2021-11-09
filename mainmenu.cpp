@@ -7,6 +7,8 @@ MainMenu::MainMenu(QWidget *parent) :
     ui(new Ui::MainMenu)
 {
     ui->setupUi(this);
+    ui->accountButton->hide();
+    ui->statisticsButton->hide();
     connect(ui->localGameButton, &QPushButton::clicked, this, &MainMenu::localGame);
 }
 

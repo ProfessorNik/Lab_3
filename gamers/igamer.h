@@ -20,13 +20,15 @@ public:
     virtual void changeStep(bool step) = 0;
     virtual const AlliedField & getField() = 0;
     virtual bool isWasted() = 0;
-    virtual void startGame() = 0;
+    virtual void startBattle() = 0;
     virtual bool isRenewed() = 0;
-    virtual void endGame() = 0;
+    virtual void endBattle() = 0;
+    virtual void forcedClosing() = 0;
     virtual FactoryGamers::Gamers getGamerVariation() = 0;
     virtual void rebuild() = 0;
 
 signals:
+    void closed();
     void shoot(int x, int y);
     void wasted();
     void fieldRebuilded();

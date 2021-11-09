@@ -7,6 +7,7 @@ GameWidget::GameWidget(QSharedPointer<IGameDataModel> model, QWidget *parent) :
 {
     ui->setupUi(this);
     connect(model.data(), &IGameDataModel::changed, this, &GameWidget::update);
+    connect(ui->exitButton, &QPushButton::pressed, this, &GameWidget::exit);
     update();
 }
 

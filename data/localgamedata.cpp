@@ -13,10 +13,9 @@ LocalGameData::LocalGameData(FactoryGamers::Gamers gamer1, QSharedPointer<IUser>
 
 void LocalGameData::startGame()
 {
-    if(!checkOnEndGame())
-        emit nextGame();
-    else
-        emit gameEnd();
+    numGame = 0;
+    scoreG1 = 0;
+    scoreG2 = 0;
 }
 
 QSharedPointer<IGamer> LocalGameData::getGamer1() const
@@ -29,31 +28,31 @@ QSharedPointer<IGamer> LocalGameData::getGamer2() const
     return gamer2;
 }
 
+void LocalGameData::endGame()
+{
+    return;
+}
+
+void LocalGameData::forcedClosing()
+{
+
+}
+
 void LocalGameData::gamer1Win()
 {
     scoreG1++;
     emit changed();
-    if(checkOnEndGame()){
-        emit gameEnd();
-        return;
-    }
-    emit nextGame();
 }
 
 void LocalGameData::gamer2Win()
 {
     scoreG2++;
     emit changed();
-    if(checkOnEndGame()){
-        emit gameEnd();
-        return;
-    }
-    emit nextGame();
 }
 
-bool LocalGameData::checkOnEndGame()
+bool LocalGameData::isNextBattle()
 {
-    return scoreG1 + scoreG2 >= amountGame;
+    return scoreG1 + scoreG2 < amountGame;
 }
 
 int LocalGameData::getAmountGames()

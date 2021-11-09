@@ -10,14 +10,6 @@
 
 BuilderField::BuilderField(QWidget *parent) : QWidget(parent)
 {
-    for(int i = 0; i < Field::X_MAX; i++){
-        QVector<Field::FieldPlace> line;
-        for(int j = 0; j < Field::Y_MAX; j++)
-            line.push_back(Field::FieldPlace::EMPTY_PLACE);
-        fieldModel.push_back(line);
-    }
-
-
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
 
     QVBoxLayout* shipsLayout = new QVBoxLayout;
@@ -75,6 +67,24 @@ BuilderField::BuilderField(QWidget *parent) : QWidget(parent)
     mainLayout->addSpacerItem(new QSpacerItem(1,1, QSizePolicy::Expanding, QSizePolicy::Fixed));
 
     this->setLayout(mainLayout);
+    refactor();
+}
+
+void BuilderField::refactor()
+{
+    fieldModel.clear();
+    numShip1 = 4;
+    numShip2 = 3;
+    numShip3 = 2;
+    numShip4 = 1;
+    updateLabels();
+    for(int i = 0; i < Field::X_MAX; i++){
+        QVector<Field::FieldPlace> line;
+        for(int j = 0; j < Field::Y_MAX; j++)
+            line.push_back(Field::FieldPlace::EMPTY_PLACE);
+        fieldModel.push_back(line);
+    }
+    field->update(fieldModel);
 }
 
 
@@ -232,4 +242,10 @@ void BuilderField::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::MouseButton::RightButton){
         rotateShip();
     }
+}
+
+
+void BuilderField::closeEvent(QCloseEvent *event)
+{
+    emit closed();
 }

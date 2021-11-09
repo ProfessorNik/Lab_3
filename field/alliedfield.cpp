@@ -40,6 +40,7 @@ Field::FieldPlace AlliedField::shootTo(int x, int y)
     if(field[x][y] == Field::SHIP_PLACE){
         field[x][y] = Field::SHIP_WRECKED_PLACE;
         if(checkOnKilledShip(x, y)){
+            qDebug("ship is killed");
             changeToKilledShip(x, y);
             if(isWasted())
                 emit wasted();
@@ -71,6 +72,7 @@ bool AlliedField::checkOnKilledShip(int x, int y)
         for(int j = -1; j <= 1; j++){
             if(i != 0 && j != 0)
                 continue;
+
             if((x + i < 0 || x + i >= Field::X_MAX || y + j < 0 || y + j >= Field::Y_MAX))
                 continue;
 
@@ -81,8 +83,7 @@ bool AlliedField::checkOnKilledShip(int x, int y)
 
             if(field[x + i][y + j] == Field::FieldPlace::SHIP_WRECKED_PLACE){
                 for (int k = 0; k < Field::SHIP_MAX_SIZE + 1; k++){
-
-                    if((x + i*k < 0 || x + i*k >= Field::X_MAX || y + j*k < 0 || y + j*k >= Field::Y_MAX) || (field[x + i*k][y + j*k] ==  Field::FieldPlace::EMPTY_PLACE)){
+                    if((x + i*k < 0 || x + i*k >= Field::X_MAX || y + j*k < 0 || y + j*k >= Field::Y_MAX) || (field[x + i*k][y + j*k] ==  Field::FieldPlace::EMPTY_PLACE) || (field[x + i*k][y + j*k] != Field::FieldPlace::EMPTY_WRECKED_PLACE)){
                         flag = true;
                         break;
                     }

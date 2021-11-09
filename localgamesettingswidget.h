@@ -25,8 +25,10 @@ private:
     Ui::LocalGameSettingsWidget *ui;
 private slots:
     void pressedStrart();
+
 signals:
     void settingsReady();
+    void mainMenu();
 };
 
 #endif // LOCALGAMESETTINGSWIDGET_H

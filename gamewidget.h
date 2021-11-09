@@ -22,6 +22,8 @@ private:
     QSharedPointer<IGameDataModel> model;
 private slots:
     void update();
+signals:
+    void exit();
 };
 
 #endif // GAMEWIDGET_H
