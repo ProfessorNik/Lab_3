@@ -1,24 +1,21 @@
 #ifndef BUILDERFIELDRANDOM_H
 #define BUILDERFIELDRANDOM_H
 
-#include "builderfieldstrategy.h"
+#include "abstractbuilderfieldalgorithm.h"
 
-class BuilderFieldRandom : public BuilderFieldStrategy
+class BuilderFieldRandom : public AbstractBuilderFieldAlgorithm
 {
     Q_OBJECT
 
 public:
     explicit BuilderFieldRandom(QObject *parent = nullptr);
 
-    void build() override;
-private:
-    static QVector<QVector<Field::FieldPlace> > randomBuildField();
-    static bool checkNeighborhood(const QVector<QVector<Field::FieldPlace> >& field, int x, int y);
-    static void defultBuildField(QVector<QVector<Field::FieldPlace> >& field);
+protected:
+    int generateX() const;
+    int generateY() const;
+    bool generateOrientation() const;
 
-    // BuilderFieldStrategy interface
-public:
-    void forcedClosing() override;
+    CoordsShip generateCoordsShip(int quantiyDecks) const override;
 };
 
 #endif // BUILDERFIELDRANDOM_H

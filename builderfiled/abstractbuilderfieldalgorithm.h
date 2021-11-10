@@ -15,9 +15,13 @@ public:
     void build() override;
     void forcedClosing() override;
 protected:
-    virtual int generateX() = 0;
-    virtual int generateY() = 0;
-    virtual bool generateOrientation() = 0;
+    typedef struct CoordsShip{
+        int x;
+        int y;
+        int vertical;
+    } coordsShip;
+
+    virtual CoordsShip generateCoordsShip(int quantityDecks) const = 0;
 private:
     QVector<QVector<Field::FieldPlace> > field;
     QVector<int> numsShips;
@@ -27,15 +31,12 @@ private:
     void clearField();
     void buildEmptyField();
     void locateShips();
-
     void locateShip(int quantityDecks);
-    void locateVerticalShip(int x, int y, int quantityDecks);
     bool isAvilabelSpaceForVerticalShip(int x, int y, int quantityDecks);
-    void locateHorizontalShip(int x, int y, int quantityDecks);
     bool isAvilabelSpaceForHorizontalShip(int x, int y, int quantityDecks);
+    void locateVerticalShip(int x, int y, int quantityDecks);
+    void locateHorizontalShip(int x, int y, int quantityDecks);
     bool isAvailableSpace(int x, int y);
-
-
 };
 
 #endif // ABSTRACTBUILDERFIELDALGORITHM_H

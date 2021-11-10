@@ -1,5 +1,5 @@
 #include "localgamecontorller.h"
-#include "../../services/servicesfactory.h"
+#include "../services/servicesfactory.h"
 #include <QThread>
 
 LocalGameContorller::LocalGameContorller(QSharedPointer<LocalGameData> gd, QObject *parent) : IGameController(parent), gd(gd)
@@ -9,8 +9,6 @@ LocalGameContorller::LocalGameContorller(QSharedPointer<LocalGameData> gd, QObje
 
     connect(gamer1.data(), &IGamer::shoot, this, &LocalGameContorller::tryStep, Qt::QueuedConnection);
     connect(gamer2.data(), &IGamer::shoot, this, &LocalGameContorller::tryStep, Qt::QueuedConnection);
-//    connect(gamer1.data(), &IGamer::closed, this, &LocalGameContorller::forcedClosing);
-//    connect(gamer2.data(), &IGamer::closed, this, &LocalGameContorller::forcedClosing);
     connect(gamer1.data(), &IGamer::fieldRebuilded, this, &LocalGameContorller::startBattle, Qt::QueuedConnection);
     connect(gamer2.data(), &IGamer::fieldRebuilded, this, &LocalGameContorller::startBattle, Qt::QueuedConnection);
 }

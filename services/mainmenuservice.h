@@ -6,15 +6,15 @@
 #include <QSharedPointer>
 #include "mainmenu.h"
 
-class Session;
+class SeaBattleClient;
 
 class MainMenuService : public IService
 {
 public:
-    explicit MainMenuService(Session* session, QObject *parent = nullptr);
+    explicit MainMenuService(SeaBattleClient* session, QObject *parent = nullptr);
 
 private:
-    Session* session;
+    SeaBattleClient* session;
     QSharedPointer<MainMenu> mainMenu;
 
 private slots:

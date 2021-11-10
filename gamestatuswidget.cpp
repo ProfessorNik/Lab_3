@@ -1,31 +1,27 @@
-#include "gamewidget.h"
+#include "gamestatuswidget.h"
 #include "ui_gamewidget.h"
 
 
-GameWidget::GameWidget(QSharedPointer<IGameDataModel> model, QWidget *parent) :
+GameStatusWidget::GameStatusWidget(QSharedPointer<IGameDataModel> model, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameWidget), model(model)
 {
     ui->setupUi(this);
-    connect(model.data(), &IGameDataModel::changed, this, &GameWidget::update);
-    connect(ui->exitButton, &QPushButton::pressed, this, &GameWidget::exit);
+    connect(model.data(), &IGameDataModel::changed, this, &GameStatusWidget::update);
+    connect(ui->exitButton, &QPushButton::pressed, this, &GameStatusWidget::exit);
     update();
 }
 
-GameWidget::~GameWidget()
+GameStatusWidget::~GameStatusWidget()
 {
     delete ui;
 }
 
-void GameWidget::update()
+void GameStatusWidget::update()
 {
-    qDebug("update");
     int amountGame = model->getAmountGames();
-    qDebug() << amountGame;
     int scoreG1 = model->getScoreG1();
-    qDebug() << scoreG1;
     int scoreG2 = model->getScoreG2();
-    qDebug() << scoreG2;
     ui->nameG1->setText(model->getNameG1());
     ui->nameG2->setText(model->getNameG2());
     ui->amountGames->setText(QString::number(amountGame));

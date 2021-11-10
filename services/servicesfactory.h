@@ -4,7 +4,7 @@
 #include "iservice.h"
 #include "QSharedPointer"
 
-class Session;
+class SeaBattleClient;
 
 class ServicesFactory
 {
@@ -16,7 +16,7 @@ public:
         LOCAL_GAME_SETTINGS_SERVICE
     } Services;
 
-    static QSharedPointer<IService> buildService(Services service, Session* session);
+    static QSharedPointer<IService> buildService(Services service, SeaBattleClient* session);
 };
 
 #endif // SERVICESFACTORY_H

@@ -2,7 +2,7 @@
 #define IGAMECONTROLLER_H
 
 #include <QObject>
-#include "../../data/session.h"
+#include "../data/seabattleclient.h"
 
 class IGameController : public QObject
 {

@@ -2,7 +2,7 @@
 #define BUILDERFIELDSELF_H
 
 #include "builderfieldstrategy.h"
-#include "builderfield.h"
+#include "builderfieldgraphic.h"
 #include <QSharedPointer>
 
 class BuilderFieldSelf : public BuilderFieldStrategy
@@ -14,7 +14,7 @@ public:
     void build() override;
 
 private:
-    QSharedPointer<BuilderField> builder;
+    QSharedPointer<BuilderFieldGraphic> builder;
 private slots:
     void sendField(QVector<QVector<Field::FieldPlace> > field);
 

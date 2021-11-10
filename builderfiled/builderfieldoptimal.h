@@ -1,20 +1,19 @@
 #ifndef BUILDERFIELDOPTIMAL_H
 #define BUILDERFIELDOPTIMAL_H
 
-#include "builderfieldstrategy.h"
+#include "abstractbuilderfieldalgorithm.h"
 
-class BuilderFieldOptimal : public BuilderFieldStrategy
+class BuilderFieldOptimal : public AbstractBuilderFieldAlgorithm
 {
     Q_OBJECT
 public:
     explicit BuilderFieldOptimal(QObject *parent = nullptr);
 
-    void build() override;
-    void forcedClosing() override;
-private:
-    QVector<QVector<Field::FieldPlace> > optimalBuildField();
-    bool checkNeighborhood(const QVector<QVector<Field::FieldPlace> >& field,int x, int y);
-    void defaultBuildField(QVector<QVector<Field::FieldPlace> >& field);
+protected:
+    CoordsShip generateCoordsShip(int quantityDecks) const override;
+    int generateX(int quantityDecks, bool vertical) const;
+    int generateY(int quantityDecks, bool vertical) const;
+    bool generateOrientation() const;
 };
 
 #endif // BUILDERFIELDOPTIMAL_H

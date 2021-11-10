@@ -2,7 +2,7 @@
 #define COMPUTERGAMER_H
 
 #include "igamer.h"
-#include "../random_strategy/gamemodel.h"
+#include "../gameMV/gamemodel.h"
 #include "../builderfiled/builderfieldstrategy.h"
 #include <QSharedPointer>
 
@@ -23,9 +23,6 @@ public:
     void endBattle() override;
     virtual FactoryGamers::Gamers getGamerVariation() override = 0;
     void rebuild() override;
-
-    static void defultBuildField(QVector<QVector<Field::FieldPlace> > &field);
-    static QVector<QVector<Field::FieldPlace> > randomBuildField();
 protected:
 
     QSharedPointer<GameModel> model;

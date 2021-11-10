@@ -3,7 +3,6 @@
 
 AbstractFieldWidget::AbstractFieldWidget(QWidget *parent) : QWidget(parent)
 {
-    //this->setSizeIncrement(300, 300);
     this->setFixedSize(300, 300);
 }
 
@@ -23,27 +22,6 @@ void AbstractFieldWidget::paintEvent(QPaintEvent *event)
     drawLines(&qp);
 
     drawField(&qp);
-
-//    drawDiagSquare(&qp, 3, 3);
-//    drawDiagSquare(&qp, 3, 5);
-//    drawDiagSquare(&qp, 2, 4);
-//    drawDiagSquare(&qp, 4, 4);
-//    drawBlueSquare(&qp, 3, 4);
-//    drawCross(&qp, 3, 4);
-
-//    drawDiagSquare(&qp, 3, 3);
-//    drawDiagSquare(&qp, 3, 3);
-//    drawDiagSquare(&qp, 9, 9);
-//    drawBlueSquare(&qp, 6, 3);
-
-//    //drawCross(&qp, 6, 3);
-//    drawBlueSquare(&qp, 7, 3);
-//    //drawCross(&qp, 7, 3);
-//    drawBlueSquare(&qp, 8, 3);
-
-//    drawRedSquare(&qp, 6, 3);
-//    drawRedSquare(&qp, 6, 4);
-//    drawRedSquare(&qp, 6, 5);
 }
 
 void AbstractFieldWidget::drawDiagSquare(QPainter* qp, int x, int y){

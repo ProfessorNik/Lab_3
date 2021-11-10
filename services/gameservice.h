@@ -2,35 +2,31 @@
 #define GAMESERVICE_H
 
 #include "iservice.h"
-#include "../random_strategy/controllers/localgamecontorller.h"
-#include "gamestates/gamestate.h"
-#include "../gamewidget.h"
+#include "../gamecontrollers/localgamecontorller.h"
+#include "../gamestatuswidget.h"
 #include "../endgamemessagebox.h"
 
-class Session;
+class SeaBattleClient;
 
 class GameService : public IService
 {
     Q_OBJECT
 public:
 
-    explicit GameService(Session* session, QObject *parent = nullptr);
-    void changeState(GameState* state);
+    explicit GameService(SeaBattleClient* session, QObject *parent = nullptr);
+
+    void make() override;
 private:
 
     QSharedPointer<LocalGameContorller> gc;
-    QSharedPointer<GameWidget> view;
+    QSharedPointer<GameStatusWidget> view;
     QSharedPointer<EndGameMessageBox> mBox;
-    GameState *state;
-    Session *session;
+    SeaBattleClient *session;
 
-    void goToMainMenu();
-    // IService interface
+
 private slots:
     void exit();
-    void endGame();
-public:
-    void make() override;
+
 };
 
 #endif // GAMESERVICE_H

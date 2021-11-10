@@ -10,13 +10,13 @@ namespace Ui {
 class GameWidget;
 }
 
-class GameWidget : public QWidget
+class GameStatusWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit GameWidget(QSharedPointer<IGameDataModel> model, QWidget *parent = nullptr);
-    ~GameWidget();
+    explicit GameStatusWidget(QSharedPointer<IGameDataModel> model, QWidget *parent = nullptr);
+    ~GameStatusWidget();
 
 private:
     Ui::GameWidget *ui;

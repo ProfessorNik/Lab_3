@@ -22,6 +22,8 @@ private:
     bool isRed = false;
     QVector<QPair<int, int> > ship;
 
+    void drawNotPastedShip(QPainter *qp);
+    void drawReadyField(QPainter *qp);
 signals:
     void mouseOnPosition(int x, int y);
     void mouseOut();

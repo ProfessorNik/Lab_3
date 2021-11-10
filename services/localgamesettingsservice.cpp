@@ -1,7 +1,7 @@
 #include "localgamesettingsservice.h"
 #include "data/localuser.h"
 
-LocalGameSettingsService::LocalGameSettingsService(Session *session, QObject *parent) : IService(parent), session(session)
+LocalGameSettingsService::LocalGameSettingsService(SeaBattleClient *session, QObject *parent) : IService(parent), session(session)
 {
     widget = QSharedPointer<LocalGameSettingsWidget>(new LocalGameSettingsWidget);
     connect(widget.data(), &LocalGameSettingsWidget::settingsReady, this, &LocalGameSettingsService::gameSettingsReady);

@@ -2,10 +2,10 @@
 #define HUMANGAMER_H
 
 #include "igamer.h"
-#include "../data/session.h"
+#include "../data/seabattleclient.h"
 #include "../data/iuser.h"
-#include "../random_strategy/widgetgameview.h"
-#include "../random_strategy/gamemodel.h"
+#include "../gameMV/gamemodel.h"
+#include "../gameMV/widgetgameview.h"
 #include <QSharedPointer>
 #include "factorygamers.h"
 #include "irebuildgamer.h"

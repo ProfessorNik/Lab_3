@@ -58,9 +58,10 @@ void AbstractBuilderFieldAlgorithm::locateShips()
 void AbstractBuilderFieldAlgorithm::locateShip(int quantityDecks)
 {
     while (true) {
-        bool vertical = generateOrientation();
-        int x = generateX();
-        int y = generateY();
+        auto coords = generateCoordsShip(quantityDecks);
+        bool vertical = coords.vertical;
+        int x = coords.x;
+        int y = coords.y;
 
         if(vertical){
             if (isAvilabelSpaceForVerticalShip(x, y, quantityDecks)){

@@ -10,7 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     builderfiled/abstractbuilderfieldalgorithm.cpp \
-    builderfiled/builderfield.cpp \
+    builderfiled/builderfieldgraphic.cpp \
     builderfiled/builderfieldoptimal.cpp \
     builderfiled/builderfieldrandom.cpp \
     builderfiled/builderfieldself.cpp \
@@ -20,9 +20,8 @@ SOURCES += \
     data/iuser.cpp \
     data/localgamedata.cpp \
     data/localuser.cpp \
-    data/session.cpp \
+    data/seabattleclient.cpp \
     data/session/iwindowsession.cpp \
-    data/user.cpp \
     endgamemessagebox.cpp \
     field/alliedfield.cpp \
     field/enemyfield.cpp \
@@ -30,6 +29,10 @@ SOURCES += \
     fieldwidget/abstractfieldwidget.cpp \
     fieldwidget/alliedfieldwidget.cpp \
     fieldwidget/enemyfieldwidget.cpp \
+    gameMV/gamemodel.cpp \
+    gameMV/widgetgameview.cpp \
+    gamecontrollers/igamecontroller.cpp \
+    gamecontrollers/localgamecontorller.cpp \
     gamers/computergamer.cpp \
     gamers/factorygamers.cpp \
     gamers/humangamer.cpp \
@@ -38,29 +41,22 @@ SOURCES += \
     gamers/irebuildgamer.cpp \
     gamers/optimalgamer.cpp \
     gamers/randomgamer.cpp \
-    gamewidget.cpp \
+    gamestatuswidget.cpp \
     igamedatamodel.cpp \
     interfacegameview.cpp \
     localgamesettingswidget.cpp \
     main.cpp \
     mainmenu.cpp \
     mainwindow.cpp \
-    random_strategy/controllers/igamecontroller.cpp \
-    random_strategy/controllers/localgamecontorller.cpp \
-    random_strategy/gamemodel.cpp \
-    random_strategy/widgetgameview.cpp \
-    services/builderservice.cpp \
     services/gameservice.cpp \
-    services/gamestates/gamestate.cpp \
     services/iservice.cpp \
     services/localgamesettingsservice.cpp \
     services/mainmenuservice.cpp \
-    services/servicesfactory.cpp \
-    widgetform/widgetform.cpp
+    services/servicesfactory.cpp
 
 HEADERS += \
     builderfiled/abstractbuilderfieldalgorithm.h \
-    builderfiled/builderfield.h \
+    builderfiled/builderfieldgraphic.h \
     builderfiled/builderfieldoptimal.h \
     builderfiled/builderfieldrandom.h \
     builderfiled/builderfieldself.h \
@@ -70,9 +66,8 @@ HEADERS += \
     data/iuser.h \
     data/localgamedata.h \
     data/localuser.h \
-    data/session.h \
+    data/seabattleclient.h \
     data/session/iwindowsession.h \
-    data/user.h \
     endgamemessagebox.h \
     field/alliedfield.h \
     field/enemyfield.h \
@@ -80,6 +75,10 @@ HEADERS += \
     fieldwidget/abstractfieldwidget.h \
     fieldwidget/alliedfieldwidget.h \
     fieldwidget/enemyfieldwidget.h \
+    gameMV/gamemodel.h \
+    gameMV/widgetgameview.h \
+    gamecontrollers/igamecontroller.h \
+    gamecontrollers/localgamecontorller.h \
     gamers/computergamer.h \
     gamers/factorygamers.h \
     gamers/humangamer.h \
@@ -88,27 +87,20 @@ HEADERS += \
     gamers/irebuildgamer.h \
     gamers/optimalgamer.h \
     gamers/randomgamer.h \
-    gamewidget.h \
+    gamestatuswidget.h \
     igamedatamodel.h \
     interfacegameview.h \
     localgamesettingswidget.h \
     mainmenu.h \
     mainwindow.h \
-    random_strategy/controllers/igamecontroller.h \
-    random_strategy/controllers/localgamecontorller.h \
-    random_strategy/gamemodel.h \
-    random_strategy/widgetgameview.h \
-    services/builderservice.h \
     services/gameservice.h \
-    services/gamestates/gamestate.h \
     services/iservice.h \
     services/localgamesettingsservice.h \
     services/mainmenuservice.h \
-    services/servicesfactory.h \
-    widgetform/widgetform.h
+    services/servicesfactory.h
 
 FORMS += \
-    gamewidget.ui \
+    gamestatuswidget.ui \
     localgamesettingswidget.ui \
     mainmenu.ui
 

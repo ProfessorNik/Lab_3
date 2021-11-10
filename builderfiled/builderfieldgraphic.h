@@ -1,5 +1,5 @@
-#ifndef BUILDERFIELD_H
-#define BUILDERFIELD_H
+#ifndef BUILDERFIELDGRAPHIC_H
+#define BUILDERFIELDGRAPHIC_H
 
 #include <QWidget>
 #include "../field/field.h"
@@ -7,17 +7,17 @@
 #include "shipwidget.h"
 #include "builderfieldwidget.h"
 
-class BuilderField : public QWidget
+class BuilderFieldGraphic : public QWidget
 {
     Q_OBJECT
 public:
-    explicit BuilderField(QWidget *parent = nullptr);
+    explicit BuilderFieldGraphic(QWidget *parent = nullptr);
 
     void refactor();
-    struct Ship{
-        int size;
-        QVector<QPair<int, int>> shipCoordinates;
-    };
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void shipSelected(int size);
@@ -25,9 +25,7 @@ private slots:
     void hideShip();
     void putShipTo(int x, int y);
     void rotateShip();
-signals:
-    void fieldIsReady(const QVector<QVector<Field::FieldPlace> >& fieldModel);
-    void closed();
+
 private:
     bool verticalShipRotation = true;
     int shipChoosen = -1;
@@ -37,8 +35,8 @@ private:
     int numShip3 = 2;
     int numShip4 = 1;
 
-    BuilderFieldWidget* field;
-    QVector<QVector<Field::FieldPlace> > fieldModel;
+    BuilderFieldWidget* fieldWidget;
+    QVector<QVector<Field::FieldPlace> > field;
     QLabel* labelShip1;
     QLabel* labelShip2;
     QLabel* labelShip3;
@@ -48,21 +46,19 @@ private:
     ShipWidget* ship3;
     ShipWidget* ship4;
 
-
-    // QWidget interface
+    void clearField();
+    void buildEmptyField();
     void drawShipToField(const QVector<QPair<int, int> >& ship);
     void updateLabels();
     bool isGoodPosForShip(int x, int y);
     bool isOutFromField(int x, int y);
     QVector<QPair<int, int> > buildShip(int x, int y, bool &badPos);
     void checkOnFilledField();
-protected:
-    void mousePressEvent(QMouseEvent *event) override;
 
 
-    // QWidget interface
-protected:
-    void closeEvent(QCloseEvent *event) override;
+signals:
+    void fieldIsReady(const QVector<QVector<Field::FieldPlace> >& fieldModel);
+    void closed();
 };
 
-#endif // BUILDERFIELD_H
+#endif // BUILDERFIELDGRAPHIC_H

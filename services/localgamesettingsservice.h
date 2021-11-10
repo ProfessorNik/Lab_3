@@ -4,20 +4,20 @@
 #include "iservice.h"
 #include "../localgamesettingswidget.h"
 #include "../data/localgamedata.h"
-#include "../data/session.h"
+#include "../data/seabattleclient.h"
 
 class LocalGameSettingsService : public IService
 {
     Q_OBJECT
 public:
-    explicit LocalGameSettingsService(Session* session, QObject *parent = nullptr);
+    explicit LocalGameSettingsService(SeaBattleClient* session, QObject *parent = nullptr);
 
     void make() override;
 private slots:
     void gameSettingsReady();
     void pressedMenu();
 private:
-    Session *session;
+    SeaBattleClient *session;
     QSharedPointer<LocalGameSettingsWidget> widget;
 };
 

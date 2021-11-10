@@ -1,31 +1,12 @@
 #include "gameservice.h"
 #include "../data/localgamedata.h"
 
-GameService::GameService(Session *session, QObject *parent) : IService(parent)
+GameService::GameService(SeaBattleClient *session, QObject *parent) : IService(parent)
 {
     this->session = session;
-    this->view = QSharedPointer<GameWidget>(new GameWidget(session->getLocalGameData()));
+    this->view = QSharedPointer<GameStatusWidget>(new GameStatusWidget(session->getLocalGameData()));
     gc = QSharedPointer<LocalGameContorller>(new LocalGameContorller(session->getLocalGameData(), this));
-//    connect(view.data(), &GameWidget::exit, gc.data(), &LocalGameContorller::exitGame);
-    connect(view.data(), &GameWidget::exit, this, &GameService::exit);
-   // connect(session->getLocalGameData().data(), &LocalGameData::gameEnd, this, &LocalGameData::endGame);
-}
-
-void GameService::changeState(GameState *state)
-{
-    if (this->state != nullptr)
-        delete this->state;
-    this->state = state;
-    this->state->setContext(this);
-}
-
-void GameService::endGame(){
-
-}
-
-void GameService::goToMainMenu()
-{
-
+    connect(view.data(), &GameStatusWidget::exit, this, &GameService::exit);
 }
 
 void GameService::exit()

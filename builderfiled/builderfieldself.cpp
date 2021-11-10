@@ -2,9 +2,9 @@
 
 BuilderFieldSelf::BuilderFieldSelf(QObject *parent) : BuilderFieldStrategy(parent)
 {
-    builder = QSharedPointer<BuilderField>(new BuilderField);
-    connect(builder.data(), &BuilderField::fieldIsReady, this, &BuilderFieldSelf::sendField);
-    connect(builder.data(), &BuilderField::closed, this, &BuilderFieldSelf::closed);
+    builder = QSharedPointer<BuilderFieldGraphic>(new BuilderFieldGraphic);
+    connect(builder.data(), &BuilderFieldGraphic::fieldIsReady, this, &BuilderFieldSelf::sendField);
+    connect(builder.data(), &BuilderFieldGraphic::closed, this, &BuilderFieldSelf::closed);
 }
 
 

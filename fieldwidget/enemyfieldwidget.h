@@ -11,20 +11,17 @@ class EnemyFieldWidget : public AbstractFieldWidget
 public:
     EnemyFieldWidget(QWidget* parent = nullptr);
     void update(const QVector<QVector<Field::FieldPlace> >& field);
-    // AbstractSingleField interface
 protected:
     void drawField(QPainter *qp) override;
+    void mousePressEvent(QMouseEvent *event) override;
+private slots:
+    void changeStep();
 private:
     QVector<QVector<Field::FieldPlace> > field;
     QSharedPointer<QTimer> timer;
     bool step;
 signals:
     void pressToSell(int x, int y);
-    // QWidget interface
-protected:
-    void mousePressEvent(QMouseEvent *event) override;
-private slots:
-    void changeStep();
 };
 
 #endif // ENEMYFIELDWIDGET_H

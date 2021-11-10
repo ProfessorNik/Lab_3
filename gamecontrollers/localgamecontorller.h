@@ -2,10 +2,10 @@
 #define LOCALGAMECONTORLLER_H
 
 #include "igamecontroller.h"
-#include "../../gamers/humangamer.h"
-#include "../../gamers/randomgamer.h"
-#include "../../gamers/igamer.h"
-#include "../../data/localgamedata.h"
+#include "../gamers/humangamer.h"
+#include "../gamers/randomgamer.h"
+#include "../gamers/igamer.h"
+#include "../data/localgamedata.h"
 
 
 class BuilderService;
