@@ -106,3 +106,9 @@ void HumanGamer::forcedClosing()
         view->hide();
     builder->forcedClosing();
 }
+
+
+const QString &HumanGamer::getName()
+{
+    return user->getName();
+}

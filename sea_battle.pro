@@ -9,7 +9,9 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    builderfiled/abstractbuilderfieldalgorithm.cpp \
     builderfiled/builderfield.cpp \
+    builderfiled/builderfieldoptimal.cpp \
     builderfiled/builderfieldrandom.cpp \
     builderfiled/builderfieldself.cpp \
     builderfiled/builderfieldstrategy.cpp \
@@ -21,6 +23,7 @@ SOURCES += \
     data/session.cpp \
     data/session/iwindowsession.cpp \
     data/user.cpp \
+    endgamemessagebox.cpp \
     field/alliedfield.cpp \
     field/enemyfield.cpp \
     field/field.cpp \
@@ -56,7 +59,9 @@ SOURCES += \
     widgetform/widgetform.cpp
 
 HEADERS += \
+    builderfiled/abstractbuilderfieldalgorithm.h \
     builderfiled/builderfield.h \
+    builderfiled/builderfieldoptimal.h \
     builderfiled/builderfieldrandom.h \
     builderfiled/builderfieldself.h \
     builderfiled/builderfieldstrategy.h \
@@ -68,6 +73,7 @@ HEADERS += \
     data/session.h \
     data/session/iwindowsession.h \
     data/user.h \
+    endgamemessagebox.h \
     field/alliedfield.h \
     field/enemyfield.h \
     field/field.h \

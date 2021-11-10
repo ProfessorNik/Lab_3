@@ -52,6 +52,10 @@ public:
 protected:
     void forcedClosing() override;
     Field::FieldPlace getLastShoot() const;
+
+    // IGamer interface
+public:
+    const QString &getName() override;
 };
 
 #endif // COMPUTERGAMER_H

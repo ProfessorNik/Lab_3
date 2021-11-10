@@ -14,6 +14,7 @@ class IGamer : public QObject
 public:
     explicit IGamer(QObject *parent = nullptr);
 
+    virtual const QString& getName() = 0;
     virtual bool isAllowedSell(int x, int y) = 0;
     virtual Field::FieldPlace shootTo(int x, int y) = 0;
     virtual void updateEnemyField(int x, int y, Field::FieldPlace place) = 0;

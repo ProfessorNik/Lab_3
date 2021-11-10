@@ -190,3 +190,9 @@ void ComputerGamer::forcedClosing()
 {
     builder->forcedClosing();
 }
+
+
+const QString &ComputerGamer::getName()
+{
+    return user->getName();
+}

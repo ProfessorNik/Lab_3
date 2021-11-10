@@ -3,6 +3,7 @@
 
 #include "iservice.h"
 #include <QObject>
+#include <QSharedPointer>
 #include "mainmenu.h"
 
 class Session;
@@ -14,7 +15,7 @@ public:
 
 private:
     Session* session;
-    MainMenu* mainMenu;
+    QSharedPointer<MainMenu> mainMenu;
 
 private slots:
     void localGame();

@@ -12,6 +12,7 @@ class BuilderService;
 
 class LocalGameContorller : public IGameController
 {
+    Q_OBJECT
 public:
     explicit LocalGameContorller(QSharedPointer<LocalGameData> gd, QObject *parent = nullptr);
 

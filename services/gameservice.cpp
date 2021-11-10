@@ -8,6 +8,7 @@ GameService::GameService(Session *session, QObject *parent) : IService(parent)
     gc = QSharedPointer<LocalGameContorller>(new LocalGameContorller(session->getLocalGameData(), this));
 //    connect(view.data(), &GameWidget::exit, gc.data(), &LocalGameContorller::exitGame);
     connect(view.data(), &GameWidget::exit, this, &GameService::exit);
+   // connect(session->getLocalGameData().data(), &LocalGameData::gameEnd, this, &LocalGameData::endGame);
 }
 
 void GameService::changeState(GameState *state)
@@ -16,6 +17,10 @@ void GameService::changeState(GameState *state)
         delete this->state;
     this->state = state;
     this->state->setContext(this);
+}
+
+void GameService::endGame(){
+
 }
 
 void GameService::goToMainMenu()

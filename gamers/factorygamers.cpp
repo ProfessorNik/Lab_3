@@ -4,7 +4,7 @@
 #include "optimalgamer.h"
 #include "../builderfiled/builderfieldself.h"
 #include "../builderfiled/builderfieldrandom.h"
-#include "../builderfiled/builderfieldrandom.h"
+#include "../builderfiled/builderfieldoptimal.h"
 
 FactoryGamers::FactoryGamers(QObject *parent) : QObject(parent)
 {
@@ -20,7 +20,7 @@ QSharedPointer<IGamer> FactoryGamers::createGamer(Gamers gamer, QSharedPointer<I
         return QSharedPointer<IGamer>(new RandomGamer(user, QSharedPointer<BuilderFieldStrategy>(new BuilderFieldRandom)));
     }
     if(gamer == Gamers::OPTIMAL_GAMER){
-        return QSharedPointer<IGamer>(new OptimalGamer(user, QSharedPointer<BuilderFieldStrategy>(new BuilderFieldRandom)));
+        return QSharedPointer<IGamer>(new OptimalGamer(user, QSharedPointer<BuilderFieldStrategy>(new BuilderFieldOptimal)));
     }
     return nullptr;
 }

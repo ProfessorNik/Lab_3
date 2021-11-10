@@ -2,11 +2,9 @@
 #include "../data/session.h"
 #include "servicesfactory.h"
 
-MainMenuService::MainMenuService(Session* session, QObject *parent) : IService(parent)
+MainMenuService::MainMenuService(Session* session, QObject *parent) : IService(parent), session(session), mainMenu(new MainMenu)
 {
-    this->session = session;
-    this->mainMenu = new MainMenu;
-    connect(mainMenu, &MainMenu::localGame, this, &MainMenuService::localGame);
+    connect(mainMenu.data(), &MainMenu::localGame, this, &MainMenuService::localGame);
 }
 
 void MainMenuService::localGame()
@@ -18,5 +16,5 @@ void MainMenuService::localGame()
 
 void MainMenuService::make()
 {
-    this->session->showWidget(mainMenu);
+    this->session->showWidget(mainMenu.data());
 }

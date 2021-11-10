@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "igamedatamodel.h"
 #include <QSharedPointer>
+#include "endgamemessagebox.h"
 
 namespace Ui {
 class GameWidget;
@@ -20,6 +21,7 @@ public:
 private:
     Ui::GameWidget *ui;
     QSharedPointer<IGameDataModel> model;
+    QSharedPointer<EndGameMessageBox> mb;
 private slots:
     void update();
 signals:

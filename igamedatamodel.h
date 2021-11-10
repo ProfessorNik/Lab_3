@@ -15,11 +15,14 @@ public:
         VAIT
     }GamerStatus;
 
-    virtual int getAmountGames() = 0;
-    virtual int getScoreG1() = 0;
-    virtual int getScoreG2() = 0;
-    virtual GamerStatus getStatusG1() = 0;
-    virtual GamerStatus getStatusG2() = 0;
+    virtual int getAmountGames() const = 0;
+    virtual int getScoreG1() const = 0;
+    virtual int getScoreG2() const = 0;
+    virtual GamerStatus getStatusG1() const = 0;
+    virtual GamerStatus getStatusG2() const = 0;
+    virtual const QString& getNameG1() const = 0;
+    virtual const QString& getNameG2() const = 0;
+    virtual bool isEndGame() const = 0;
 signals:
     void changed();
 };

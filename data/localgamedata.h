@@ -27,7 +27,7 @@ public:
 
     void startGame();
 
-    bool isNextBattle();
+    bool isNextBattle() const;
 
     QSharedPointer<IGamer> getGamer1() const;
     QSharedPointer<IGamer> getGamer2() const;
@@ -37,6 +37,7 @@ public:
 
     void gamer1Win();
     void gamer2Win();
+
 
 signals:
     void nextGame();
@@ -56,11 +57,15 @@ private:
 
     // IGameDataModel interface
 public:
-    int getAmountGames() override;
-    int getScoreG1() override;
-    int getScoreG2() override;
-    GamerStatus getStatusG1() override;
-    GamerStatus getStatusG2() override;
+    int getAmountGames() const override;
+    int getScoreG1() const override;
+    int getScoreG2() const override;
+    GamerStatus getStatusG1() const override;
+    GamerStatus getStatusG2() const override;
+    const QString& getNameG1() const override;
+    const QString& getNameG2() const override;
+
+    bool isEndGame() const override;
 };
 
 #endif // LOCALGAMEDATA_H

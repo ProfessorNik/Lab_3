@@ -50,6 +50,10 @@ private slots:
     // IGamer interface
 public:
     void forcedClosing() override;
+
+    // IGamer interface
+public:
+    const QString& getName() override;
 };
 
 

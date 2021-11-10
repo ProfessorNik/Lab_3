@@ -5,7 +5,7 @@
 #include "../random_strategy/controllers/localgamecontorller.h"
 #include "gamestates/gamestate.h"
 #include "../gamewidget.h"
-
+#include "../endgamemessagebox.h"
 
 class Session;
 
@@ -20,6 +20,7 @@ private:
 
     QSharedPointer<LocalGameContorller> gc;
     QSharedPointer<GameWidget> view;
+    QSharedPointer<EndGameMessageBox> mBox;
     GameState *state;
     Session *session;
 
@@ -27,6 +28,7 @@ private:
     // IService interface
 private slots:
     void exit();
+    void endGame();
 public:
     void make() override;
 };

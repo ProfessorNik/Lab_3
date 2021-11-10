@@ -50,32 +50,48 @@ void LocalGameData::gamer2Win()
     emit changed();
 }
 
-bool LocalGameData::isNextBattle()
+bool LocalGameData::isNextBattle() const
 {
     return scoreG1 + scoreG2 < amountGame;
 }
 
-int LocalGameData::getAmountGames()
+int LocalGameData::getAmountGames() const
 {
     return amountGame;
 }
 
-int LocalGameData::getScoreG1()
+int LocalGameData::getScoreG1() const
 {
     return scoreG1;
 }
 
-int LocalGameData::getScoreG2()
+int LocalGameData::getScoreG2() const
 {
     return scoreG2;
 }
 
-LocalGameData::GamerStatus LocalGameData::getStatusG1()
+LocalGameData::GamerStatus LocalGameData::getStatusG1() const
 {
     return statusG1;
 }
 
-LocalGameData::GamerStatus LocalGameData::getStatusG2()
+LocalGameData::GamerStatus LocalGameData::getStatusG2() const
 {
     return statusG2;
+}
+
+const QString &LocalGameData::getNameG1() const
+{
+    return gamer1->getName();
+}
+
+const QString &LocalGameData::getNameG2() const
+{
+    return gamer2->getName();
+}
+
+
+bool LocalGameData::isEndGame() const
+{
+    return !isNextBattle();
 }
