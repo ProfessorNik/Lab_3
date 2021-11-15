@@ -10,14 +10,14 @@ class LocalGameSettingsService : public IService
 {
     Q_OBJECT
 public:
-    explicit LocalGameSettingsService(SeaBattleClient* session, QObject *parent = nullptr);
+    explicit LocalGameSettingsService(SeaBattleClient* client, QObject *parent = nullptr);
 
     void make() override;
 private slots:
     void gameSettingsReady();
     void pressedMenu();
 private:
-    SeaBattleClient *session;
+    SeaBattleClient *client;
     QSharedPointer<LocalGameSettingsWidget> widget;
 };
 

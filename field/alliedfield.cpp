@@ -1,4 +1,5 @@
 #include "alliedfield.h"
+#include <QDebug>
 
 AlliedField::AlliedField(const QVector<QVector<FieldPlace> > &field, QObject *parent) : Field(parent), field(field)
 {
@@ -61,6 +62,7 @@ bool AlliedField::isWasted()
             if (field[x][y] == Field::SHIP_PLACE)
                 return false;
         }
+
     }
     return true;
 }
@@ -79,14 +81,16 @@ bool AlliedField::checkOnKilledShip(int x, int y)
             if(i == 0 && j == 0){
                if(checkOHForOneFieldShip(x, y))
                    return true;
+               continue;
             }
 
             if(field[x + i][y + j] == Field::FieldPlace::SHIP_WRECKED_PLACE){
-                for (int k = 0; k < Field::SHIP_MAX_SIZE + 1; k++){
-                    if((x + i*k < 0 || x + i*k >= Field::X_MAX || y + j*k < 0 || y + j*k >= Field::Y_MAX) || (field[x + i*k][y + j*k] ==  Field::FieldPlace::EMPTY_PLACE) || (field[x + i*k][y + j*k] != Field::FieldPlace::EMPTY_WRECKED_PLACE)){
+                for (int k = 1; k < Field::SHIP_MAX_SIZE + 1; k++){
+                    if((x + i*k < 0 || x + i*k >= Field::X_MAX || y + j*k < 0 || y + j*k >= Field::Y_MAX) || (field[x + i*k][y + j*k] ==  Field::FieldPlace::EMPTY_PLACE) || (field[x + i*k][y + j*k] == Field::FieldPlace::EMPTY_WRECKED_PLACE)){
                         flag = true;
                         break;
                     }
+
                     if(field[x + i*k][y + j*k] ==  Field::FieldPlace::SHIP_PLACE){
                         return false;
                     }

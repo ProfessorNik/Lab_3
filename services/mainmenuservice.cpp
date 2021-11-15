@@ -2,18 +2,19 @@
 #include "../data/seabattleclient.h"
 #include "servicesfactory.h"
 
-MainMenuService::MainMenuService(SeaBattleClient* session, QObject *parent) : IService(parent), session(session), mainMenu(new MainMenu)
+MainMenuService::MainMenuService(SeaBattleClient* client, QObject *parent) : IService(parent), client(client), mainMenu(new MainMenu)
 {
     connect(mainMenu.data(), &MainMenu::localGame, this, &MainMenuService::localGame);
+    connect(mainMenu.data(), &MainMenu::closed, this, &MainMenuService::closed);
 }
 
 void MainMenuService::localGame()
 {
-    session->changeService(ServicesFactory::LOCAL_GAME_SETTINGS_SERVICE);
+    client->changeService(ServicesFactory::LOCAL_GAME_SETTINGS_SERVICE);
 }
 
 
 void MainMenuService::make()
 {
-    this->session->showWidget(mainMenu.data());
+    this->client->showWidget(mainMenu.data());
 }

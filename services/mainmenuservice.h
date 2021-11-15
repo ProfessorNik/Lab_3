@@ -11,18 +11,15 @@ class SeaBattleClient;
 class MainMenuService : public IService
 {
 public:
-    explicit MainMenuService(SeaBattleClient* session, QObject *parent = nullptr);
+    explicit MainMenuService(SeaBattleClient* client, QObject *parent = nullptr);
 
+    void make() override;
 private:
-    SeaBattleClient* session;
+    SeaBattleClient* client;
     QSharedPointer<MainMenu> mainMenu;
 
 private slots:
     void localGame();
-
-    // IService interface
-public:
-    void make() override;
 };
 
 #endif // MAINMENUSERVICE_H

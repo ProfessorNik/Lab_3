@@ -12,7 +12,7 @@
 class IService;
 class ServicesFactory;
 
-class SeaBattleClient : public QObject, public IWindowSession
+class SeaBattleClient : public QObject
 {
     Q_OBJECT
 public:
@@ -26,7 +26,7 @@ public:
     explicit SeaBattleClient(QObject *parent = nullptr);
 
     void start();
-    void showWidget(QWidget* widget) override;
+    void showWidget(QWidget* widget);
 
     void changeService(ServicesFactory::Services service);
 
@@ -38,7 +38,7 @@ private:
 
     QSharedPointer<IService> service;
     QSharedPointer<LocalGameData> localgd;
-    MainWindow* window;
+    QSharedPointer<MainWindow> window;
     Mode mode;
 };
 

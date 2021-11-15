@@ -13,7 +13,7 @@ class GameService : public IService
     Q_OBJECT
 public:
 
-    explicit GameService(SeaBattleClient* session, QObject *parent = nullptr);
+    explicit GameService(SeaBattleClient* client, QObject *parent = nullptr);
 
     void make() override;
 private:
@@ -21,7 +21,7 @@ private:
     QSharedPointer<LocalGameContorller> gc;
     QSharedPointer<GameStatusWidget> view;
     QSharedPointer<EndGameMessageBox> mBox;
-    SeaBattleClient *session;
+    SeaBattleClient *client;
 
 
 private slots:

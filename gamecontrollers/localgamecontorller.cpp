@@ -45,7 +45,6 @@ void LocalGameContorller::prepareBattle()
 
 void LocalGameContorller::startBattle()
 {
-    qDebug() << "start battle";
     if(!isBuilded())
         return;
     gamer1->startBattle();
@@ -60,6 +59,7 @@ void LocalGameContorller::endBattle()
 {
     qDebug("endBattle");
     gamer1->endBattle();
+
     gamer2->endBattle();
     //////
     if(gamer1Step)
@@ -75,14 +75,13 @@ void LocalGameContorller::endGame()
     gd->endGame();
 }
 
-
 bool LocalGameContorller::isBuilded()
 {
-    if(gamer1->isRenewed() && gamer2->isRenewed())
+    if(gamer1->isRenewed() && gamer2->isRenewed()){
         return true;
+    }
     return false;
 }
-
 
 void LocalGameContorller::tryStep(int x, int y)
 {
@@ -120,4 +119,5 @@ void LocalGameContorller::tryStep(int x, int y)
     gamer1->changeStep(gamer1Step);
     gamer2->changeStep(!gamer1Step);
 }
+
 

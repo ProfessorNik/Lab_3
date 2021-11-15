@@ -13,7 +13,7 @@ public:
 public:
     FactoryGamers::Gamers getGamerVariation() override;
     QVector<QVector<QPair<int, int>>> strategyPlaces;
-    QList<QPair<int, int>> randomHint;
+    QList<QPair<int, int>> coordsRandomHint;
     QList<QPair<int, int>> coordsFixedHint;
     QList<QPair<int, int>> coordsAroundHint;
 
@@ -24,9 +24,14 @@ protected:
 private:
     int lastX, lastY;
     int lastWreckedX, lastWreckedY;
+    bool killingShip;
+    bool isCoordsInSign(int x, int y);
+
+    void addElementToCoordsAroundHint(int x, int y);
     void deleteCoords(int x, int y);
-    void updateCoordsAroundHint(Field::FieldPlace place);
+    void updateCoordsAroundHint(Shoot prevShoot);
     void removeElement(QList<QPair<int,int>>& list, int x, int y);
+    void removeExcessCellsInCoordsAroundHit();
 };
 
 #endif // OPTIMALGAMER_H

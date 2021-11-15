@@ -10,6 +10,7 @@ class ComputerGamer : public IGamer
 {
     Q_OBJECT
 public:
+
     explicit ComputerGamer(QSharedPointer<IUser> user, QSharedPointer<BuilderFieldStrategy> builder, QObject *parent = nullptr);
 
     bool isAllowedSell(int x, int y) override;
@@ -24,8 +25,14 @@ public:
     virtual FactoryGamers::Gamers getGamerVariation() override = 0;
     void rebuild() override;
 protected:
+    typedef struct Shoot{
+        int x;
+        int y;
+        Field::FieldPlace kindPlace;
+    } Shoot;
 
     QSharedPointer<GameModel> model;
+    bool isUnknownSell(int x, int y);
     virtual void makeStep(int &x, int &y) = 0;
     virtual void rebuildCoords();
 private:
@@ -33,7 +40,7 @@ private:
 
     QSharedPointer<IUser> user;
     QSharedPointer<BuilderFieldStrategy> builder;
-    Field::FieldPlace lastShoot;
+    Shoot lastShoot;
 
     bool rebuilded;
 
@@ -48,7 +55,7 @@ public:
     // IGamer interface
 protected:
     void forcedClosing() override;
-    Field::FieldPlace getLastShoot() const;
+    Shoot getLastShoot() const;
 
     // IGamer interface
 public:

@@ -16,6 +16,8 @@ public:
     ~MainMenu();
 signals:
     void localGame();
+    void closed();
+
 private:
     Ui::MainMenu *ui;
 };

@@ -12,7 +12,7 @@ public:
 
     virtual void make() = 0;
 signals:
-
+    void closed();
 };
 
 #endif // ISERVICE_H

@@ -16,7 +16,7 @@ public:
         LOCAL_GAME_SETTINGS_SERVICE
     } Services;
 
-    static QSharedPointer<IService> buildService(Services service, SeaBattleClient* session);
+    static QSharedPointer<IService> buildService(Services service, SeaBattleClient* client);
 };
 
 #endif // SERVICESFACTORY_H

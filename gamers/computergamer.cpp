@@ -43,7 +43,7 @@ bool ComputerGamer::checkNeighborhood(const QVector<QVector<Field::FieldPlace> >
     return true;
 }
 
-Field::FieldPlace ComputerGamer::getLastShoot() const
+ComputerGamer::Shoot ComputerGamer::getLastShoot() const
 {
     return lastShoot;
 }
@@ -61,7 +61,7 @@ void ComputerGamer::changeStep(bool step)
 
 void ComputerGamer::updateEnemyField(int x, int y, Field::FieldPlace place)
 {
-    lastShoot = place;
+    lastShoot = {x, y, place};
     model->responseOnShoot(x, y, place);
 }
 
@@ -89,9 +89,14 @@ void ComputerGamer::endBattle()
 
 void ComputerGamer::rebuild()
 {
-    lastShoot = Field::FieldPlace::EMPTY_PLACE;
+    lastShoot = {0, 0, Field::FieldPlace::EMPTY_PLACE};
     rebuildCoords();
     builder->build();
+}
+
+bool ComputerGamer::isUnknownSell(int x, int y)
+{
+    return model->isEmptyPlaceOnEnemyField(x, y);
 }
 
 void ComputerGamer::rebuildGamer(AlliedField field)

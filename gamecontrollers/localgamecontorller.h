@@ -37,6 +37,7 @@ private:
     bool isBuilded();
     void startBattle();
     void nextBattle();
+
 };
 
 #endif // LOCALGAMECONTORLLER_H

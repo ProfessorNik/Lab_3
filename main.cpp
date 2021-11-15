@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     std::srand(time(0));
     QApplication a(argc, argv);
-    SeaBattleClient* client = new SeaBattleClient();
+    QSharedPointer<SeaBattleClient> client(new SeaBattleClient);
     client->start();
     client->changeService(ServicesFactory::MAIN_MENU_SERVICE);
 

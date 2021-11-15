@@ -14,7 +14,6 @@ public:
 
 private:
     QHBoxLayout* mainLayout;
-
 };
 
 #endif // MAINWINDOW_H
