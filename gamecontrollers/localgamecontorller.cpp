@@ -13,6 +13,8 @@ LocalGameContorller::LocalGameContorller(QSharedPointer<LocalGameData> gd, QObje
     connect(gamer2.data(), &IGamer::fieldRebuilded, this, &LocalGameContorller::startBattle, Qt::QueuedConnection);
 }
 
+
+//this method called for start serii game
 void LocalGameContorller::startGame()
 {
     gd->startGame();
@@ -20,6 +22,7 @@ void LocalGameContorller::startGame()
     isEndBattle = true;
 }
 
+//closed child window when push button "Exit"
 void LocalGameContorller::forcedClosing()
 {
     gamer1->forcedClosing();
@@ -27,7 +30,7 @@ void LocalGameContorller::forcedClosing()
     gd->forcedClosing();
 }
 
-
+//started prepare gamers for next battle if there are still games
 void LocalGameContorller::nextBattle()
 {
     if(gd->isNextBattle())
@@ -38,11 +41,11 @@ void LocalGameContorller::nextBattle()
 
 void LocalGameContorller::prepareBattle()
 {
-    qDebug() << "prepare Battle";
     gamer1->rebuild();
     gamer2->rebuild();
 }
 
+//this slot called when gamers is ready
 void LocalGameContorller::startBattle()
 {
     if(!isBuilded())
@@ -50,7 +53,7 @@ void LocalGameContorller::startBattle()
     gamer1->startBattle();
     gamer2->startBattle();
     isEndBattle = false;
-    gamer1Step = true;
+    gamer1Step = rand() % 2;
     gamer1->changeStep(gamer1Step);
     gamer2->changeStep(!gamer1Step);
 }
