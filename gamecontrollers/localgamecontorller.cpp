@@ -60,16 +60,14 @@ void LocalGameContorller::startBattle()
 
 void LocalGameContorller::endBattle()
 {
-    qDebug("endBattle");
     gamer1->endBattle();
-
     gamer2->endBattle();
-    //////
+
     if(gamer1Step)
         gd->gamer1Win();
     else
         gd->gamer2Win();
-    //////
+
     nextBattle();
 }
 
@@ -88,9 +86,7 @@ bool LocalGameContorller::isBuilded()
 
 void LocalGameContorller::tryStep(int x, int y)
 {
-    ///////
     if(gamer1Step){
-        qDebug() << "G1: " << x << y;
         if(gamer2->isAllowedSell(x, y)){
             Field::FieldPlace place = gamer2->shootTo(x, y);
             if(place == Field::FieldPlace::EMPTY_WRECKED_PLACE){
@@ -105,7 +101,6 @@ void LocalGameContorller::tryStep(int x, int y)
 
     }
     else{
-        qDebug() << "G2: " << x << y;
         if(gamer1->isAllowedSell(x, y)){
             Field::FieldPlace place = gamer1->shootTo(x, y);
             if(place == Field::FieldPlace::EMPTY_WRECKED_PLACE){

@@ -22,8 +22,7 @@ public:
 
     bool isEndBattle;
     bool gamer1Step;
-    // IGameController interface
-public:
+
     void startGame() override;
 public slots:
     void forcedClosing();
